@@ -52,6 +52,8 @@ public class Client: WebSocketDelegate {
     public var subteamEventsDelegate: SubteamEventsDelegate?
 
     private var token = "SLACK_AUTH_TOKEN"
+    private let apiUrl = "https://slack.com/api/"
+
     public func setAuthToken(token: String) {
         self.token = token
     }
@@ -66,7 +68,7 @@ public class Client: WebSocketDelegate {
     
     //MARK: - Connection
     public func connect() {
-        let request = NSURLRequest(URL: NSURL(string:"https://slack.com/api/rtm.start?token="+token)!)
+        let request = NSURLRequest(URL: NSURL(string: apiUrl + "rtm.start" + "?token=" + token)!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.currentQueue()!) {
             (response, data, error) -> Void in
             guard let data = data else {
@@ -87,6 +89,81 @@ public class Client: WebSocketDelegate {
         }
     }
     
+    //MARK: - User & Channel
+    public func getChannelOrUserIdByName(name: String) -> String? {
+        if (name[name.startIndex] == "@") {
+            return getUserIdByName(name)
+        } else if (name[name.startIndex] == "C") {
+            return getChannelIDByName(name)
+        }
+        return nil
+    }
+
+    public func getChannelIDByName(name: String) -> String? {
+        var cleanName = name
+        if(name[name.startIndex] == "#") {
+            cleanName = name.substringFromIndex(name.startIndex.advancedBy(1))
+        }
+        for (id, channel) in channels {
+            if (channel.name == cleanName) {
+                return id
+            }
+        }
+        return nil
+    }
+
+    public func getUserIdByName(name: String) -> String? {
+        var cleanName = name
+        if(name[name.startIndex] == "@") {
+            cleanName = name.substringFromIndex(name.startIndex.advancedBy(1))
+        }
+        for (id, user) in users {
+            if (user.name == cleanName) {
+                return id
+            }
+        }
+        return nil
+    }
+
+    public func getIdDM(id: String, callback: (String?) -> Void) {
+        let cleanId = id.substringFromIndex(id.startIndex.advancedBy(1))
+        if (id[id.startIndex.advancedBy(0)] == "C") { // It's a channel, dirrectly return the ID
+            callback("D" + cleanId)
+        } else { // It's a user
+            if let idDM = self.users[id]?.idDM, let lastUpdateidDM = self.users[id]?.lastUpdateDM {
+                if (NSDate().timeIntervalSince1970 - lastUpdateidDM <= 24*60*60) { // try to get from 24h cache first
+                    callback(idDM)
+                } else { // expired, request from api to get new DM ID
+                    imOpen(id, callback: callback)
+                }
+            } else { // request from api to get new DM ID
+                imOpen(id, callback: callback)
+            }
+        }
+    }
+
+    private func imOpen(id: String, callback: (String?) -> Void) {
+        let request = NSURLRequest(URL: NSURL(string: apiUrl + "im.open" + "?token=" + token + "&user=" + id)!)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.currentQueue()!) {
+            (response, data, error) -> Void in
+            guard let data = data else {
+                return
+            }
+            do {
+                let dict: NSDictionary = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                if (dict["ok"] as! Bool == true) {
+                    let _id: String = (dict["channel"]?["id"])! as! String
+                    self.users[id]?.updateIdDM(_id)
+                    callback(_id)
+                } else {
+                    callback(nil)
+                }
+            } catch _ {
+                print(error)
+            }
+        }
+    }
+
     //MARK: - Message send
     public func sendMessage(message: String, channelID: String) {
         if (connected) {
