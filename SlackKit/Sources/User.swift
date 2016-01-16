@@ -52,6 +52,8 @@ public struct User {
     }
     
     public let id: String?
+    public var idDM: String?
+    public var lastUpdateDM: Double?
     internal(set) public var name: String?
     internal(set) public var deleted: Bool?
     internal(set) public var profile: Profile?
@@ -96,6 +98,11 @@ public struct User {
         preferences = user?["prefs"] as? [String: AnyObject]
     }
     
+    public mutating func updateIdDM(idDM: String) {
+        self.idDM = idDM
+        self.lastUpdateDM = NSDate().timeIntervalSince1970
+    }
+
     internal init?(id: String?) {
         self.id = id
         self.isBot = nil
