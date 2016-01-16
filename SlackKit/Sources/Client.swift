@@ -68,7 +68,7 @@ public class Client: WebSocketDelegate {
     
     //MARK: - Connection
     public func connect() {
-        let request = NSURLRequest(URL: NSURL(string: apiUrl + "rtm.start" + "?token=" + token)!)
+        let request = NSURLRequest(URL: NSURL(string: "\(apiUrl)rtm.start?token=\(token)")!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.currentQueue()!) {
             (response, data, error) -> Void in
             guard let data = data else {
@@ -143,7 +143,7 @@ public class Client: WebSocketDelegate {
     }
 
     private func imOpen(id: String, callback: (String?) -> Void) {
-        let request = NSURLRequest(URL: NSURL(string: apiUrl + "im.open" + "?token=" + token + "&user=" + id)!)
+        let request = NSURLRequest(URL: NSURL(string: "\(apiUrl)im.open?token=\(token)&user=\(id)")!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.currentQueue()!) {
             (response, data, error) -> Void in
             guard let data = data else {
