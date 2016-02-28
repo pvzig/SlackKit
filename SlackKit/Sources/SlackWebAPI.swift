@@ -125,10 +125,10 @@ public class SlackWebAPI {
     }
     
     //MARK: - Channels
-    public func channelHistory(id: String, latest: String = "\(NSDate().timeIntervalSince1970)", oldest: String = "0", inclusive: Bool = false, count: Int = 100, unreads: Bool = false, success: ((history: [String: AnyObject]?)->Void)?, failure: FailureClosure?) {
+    public func channelHistory(id: String, latest: String = "\(NSDate().timeIntervalSince1970)", oldest: String = "0", inclusive: Bool = false, count: Int = 100, unreads: Bool = false, success: ((history: History?)->Void)?, failure: FailureClosure?) {
         history(.ChannelsHistory, id: id, latest: latest, oldest: oldest, inclusive: inclusive, count: count, unreads: unreads, success: {
             (history) -> Void in
-                success?(history:history)
+                success?(history: history)
             }) {(error) -> Void in
                 failure?(error: error)
         }
@@ -250,7 +250,7 @@ public class SlackWebAPI {
         }
     }
     
-    public func groupHistory(id: String, latest: String = "\(NSDate().timeIntervalSince1970)", oldest: String = "0", inclusive: Bool = false, count: Int = 100, unreads: Bool = false, success: ((history: [String: AnyObject]?)->Void)?, failure: FailureClosure?) {
+    public func groupHistory(id: String, latest: String = "\(NSDate().timeIntervalSince1970)", oldest: String = "0", inclusive: Bool = false, count: Int = 100, unreads: Bool = false, success: ((history: History?)->Void)?, failure: FailureClosure?) {
         history(.GroupsHistory, id: id, latest: latest, oldest: oldest, inclusive: inclusive, count: count, unreads: unreads, success: {
             (history) -> Void in
                 success?(history: history)
@@ -324,7 +324,7 @@ public class SlackWebAPI {
         }
     }
     
-    public func imHistory(id: String, latest: String = "\(NSDate().timeIntervalSince1970)", oldest: String = "0", inclusive: Bool = false, count: Int = 100, unreads: Bool = false, success: ((history: [String: AnyObject]?)->Void)?, failure: FailureClosure?) {
+    public func imHistory(id: String, latest: String = "\(NSDate().timeIntervalSince1970)", oldest: String = "0", inclusive: Bool = false, count: Int = 100, unreads: Bool = false, success: ((history: History?)->Void)?, failure: FailureClosure?) {
         history(.IMHistory, id: id, latest: latest, oldest: oldest, inclusive: inclusive, count: count, unreads: unreads, success: {
             (history) -> Void in
                 success?(history: history)
@@ -372,7 +372,7 @@ public class SlackWebAPI {
         }
     }
     
-    public func mpimHistory(id: String, latest: String = "\(NSDate().timeIntervalSince1970)", oldest: String = "0", inclusive: Bool = false, count: Int = 100, unreads: Bool = false, success: ((history: [String: AnyObject]?)->Void)?, failure: FailureClosure?) {
+    public func mpimHistory(id: String, latest: String = "\(NSDate().timeIntervalSince1970)", oldest: String = "0", inclusive: Bool = false, count: Int = 100, unreads: Bool = false, success: ((history: History?)->Void)?, failure: FailureClosure?) {
         history(.MPIMHistory, id: id, latest: latest, oldest: oldest, inclusive: inclusive, count: count, unreads: unreads, success: {
             (history) -> Void in
                 success?(history: history)
@@ -573,11 +573,11 @@ public class SlackWebAPI {
         }
     }
     
-    private func history(endpoint: SlackAPIEndpoint, id: String, latest: String = "\(NSDate().timeIntervalSince1970)", oldest: String = "0", inclusive: Bool = false, count: Int = 100, unreads: Bool = false, success: ((history: [String: AnyObject]?)->Void)?, failure: FailureClosure?) {
+    private func history(endpoint: SlackAPIEndpoint, id: String, latest: String = "\(NSDate().timeIntervalSince1970)", oldest: String = "0", inclusive: Bool = false, count: Int = 100, unreads: Bool = false, success: ((history: History?)->Void)?, failure: FailureClosure?) {
         let parameters: [String: AnyObject] = ["channel": id, "latest": latest, "oldest": oldest, "inclusive":inclusive, "count":count, "unreads":unreads]
         client.api.request(endpoint, token: client.token, parameters: parameters, successClosure: {
             (response) -> Void in
-                success?(history: response)
+                success?(history: History(history: response))
             }) {(error) -> Void in
                 failure?(error: error)
         }
