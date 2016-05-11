@@ -1,5 +1,5 @@
 //
-// EventDispatcher.swift
+// EventDispatching.swift
 //
 // Copyright © 2016 Peter Zignego. All rights reserved.
 //
@@ -21,143 +21,137 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-internal class EventDispatcher {
-    let client: Client
-    let handler: EventHandler
-    
-    required init(client: Client) {
-        self.client = client
-        handler = EventHandler(client: client)
-    }
-    
+internal extension Client {
+
     func dispatch(event: [String: AnyObject]) {
         let event = Event(event: event)
         if let type = event.type {
             switch type {
             case .Hello:
-                handler.connected()
+                connected = true
+                slackEventsDelegate?.clientConnected()
             case .Ok:
-                handler.messageSent(event)
+                messageSent(event)
             case .Message:
                 if (event.subtype != nil) {
                     messageDispatcher(event)
                 } else {
-                    handler.messageReceived(event)
+                    messageReceived(event)
                 }
             case .UserTyping:
-                handler.userTyping(event)
+                userTyping(event)
             case .ChannelMarked, .IMMarked, .GroupMarked:
-                handler.channelMarked(event)
+                channelMarked(event)
             case .ChannelCreated, .IMCreated:
-                handler.channelCreated(event)
+                channelCreated(event)
             case .ChannelJoined, .GroupJoined:
-                handler.channelJoined(event)
+                channelJoined(event)
             case .ChannelLeft, .GroupLeft:
-                handler.channelLeft(event)
+                channelLeft(event)
             case .ChannelDeleted:
-                handler.channelDeleted(event)
+                channelDeleted(event)
             case .ChannelRenamed, .GroupRename:
-                handler.channelRenamed(event)
+                channelRenamed(event)
             case .ChannelArchive, .GroupArchive:
-                handler.channelArchived(event, archived: true)
+                channelArchived(event, archived: true)
             case .ChannelUnarchive, .GroupUnarchive:
-                handler.channelArchived(event, archived: false)
+                channelArchived(event, archived: false)
             case .ChannelHistoryChanged, .IMHistoryChanged, .GroupHistoryChanged:
-                handler.channelHistoryChanged(event)
+                channelHistoryChanged(event)
             case .DNDUpdated:
-                handler.doNotDisturbUpdated(event)
+                doNotDisturbUpdated(event)
             case .DNDUpatedUser:
-                handler.doNotDisturbUserUpdated(event)
+                doNotDisturbUserUpdated(event)
             case .IMOpen, .GroupOpen:
-                handler.open(event, open: true)
+                open(event, open: true)
             case .IMClose, .GroupClose:
-                handler.open(event, open: false)
+                open(event, open: false)
             case .FileCreated:
-                handler.processFile(event)
+                processFile(event)
             case .FileShared:
-                handler.processFile(event)
+                processFile(event)
             case .FileUnshared:
-                handler.processFile(event)
+                processFile(event)
             case .FilePublic:
-                handler.processFile(event)
+                processFile(event)
             case .FilePrivate:
-                handler.filePrivate(event)
+                filePrivate(event)
             case .FileChanged:
-                handler.processFile(event)
+                processFile(event)
             case .FileDeleted:
-                handler.deleteFile(event)
+                deleteFile(event)
             case .FileCommentAdded:
-                handler.fileCommentAdded(event)
+                fileCommentAdded(event)
             case .FileCommentEdited:
-                handler.fileCommentEdited(event)
+                fileCommentEdited(event)
             case .FileCommentDeleted:
-                handler.fileCommentDeleted(event)
+                fileCommentDeleted(event)
             case .PinAdded:
-                handler.pinAdded(event)
+                pinAdded(event)
             case .PinRemoved:
-                handler.pinRemoved(event)
+                pinRemoved(event)
             case .Pong:
-                handler.pong(event)
+                pong(event)
             case .PresenceChange:
-                handler.presenceChange(event)
+                presenceChange(event)
             case .ManualPresenceChange:
-                handler.manualPresenceChange(event)
+                manualPresenceChange(event)
             case .PrefChange:
-                handler.changePreference(event)
+                changePreference(event)
             case .UserChange:
-                handler.userChange(event)
+                userChange(event)
             case .TeamJoin:
-                handler.teamJoin(event)
+                teamJoin(event)
             case .StarAdded:
-                handler.itemStarred(event, star: true)
+                itemStarred(event, star: true)
             case .StarRemoved:
-                handler.itemStarred(event, star: false)
+                itemStarred(event, star: false)
             case .ReactionAdded:
-                handler.addedReaction(event)
+                addedReaction(event)
             case .ReactionRemoved:
-                handler.removedReaction(event)
+                removedReaction(event)
             case .EmojiChanged:
-                handler.emojiChanged(event)
+                emojiChanged(event)
             case .CommandsChanged:
                 // This functionality is only used by our web client. 
                 // The other APIs required to support slash command metadata are currently unstable. 
                 // Until they are released other clients should ignore this event.
                 break
             case .TeamPlanChange:
-                handler.teamPlanChange(event)
+                teamPlanChange(event)
             case .TeamPrefChange:
-                handler.teamPreferenceChange(event)
+                teamPreferenceChange(event)
             case .TeamRename:
-                handler.teamNameChange(event)
+                teamNameChange(event)
             case .TeamDomainChange:
-                handler.teamDomainChange(event)
+                teamDomainChange(event)
             case .EmailDomainChange:
-                handler.emailDomainChange(event)
+                emailDomainChange(event)
             case .TeamProfileChange:
-                handler.teamProfileChange(event)
+                teamProfileChange(event)
             case .TeamProfileDelete:
-                handler.teamProfileDeleted(event)
+                teamProfileDeleted(event)
             case .TeamProfileReorder:
-                handler.teamProfileReordered(event)
+                teamProfileReordered(event)
             case .BotAdded:
-                handler.bot(event)
+                bot(event)
             case .BotChanged:
-                handler.bot(event)
+                bot(event)
             case .AccountsChanged:
                 // The accounts_changed event is used by our web client to maintain a list of logged-in accounts.
                 // Other clients should ignore this event.
                 break
             case .TeamMigrationStarted:
-                client.connect(pingInterval: client.pingInterval, timeout: client.timeout, reconnect: client.reconnect)
+                connect(pingInterval: pingInterval, timeout: timeout, reconnect: reconnect)
             case .ReconnectURL:
                 // The reconnect_url event is currently unsupported and experimental.
                 break
             case .SubteamCreated, .SubteamUpdated:
-                handler.subteam(event)
+                subteam(event)
             case .SubteamSelfAdded:
-                handler.subteamAddedSelf(event)
+                subteamAddedSelf(event)
             case.SubteamSelfRemoved:
-                handler.subteamRemovedSelf(event)
+                subteamRemovedSelf(event)
             case .Error:
                 print("Error: \(event)")
                 break
@@ -169,11 +163,11 @@ internal class EventDispatcher {
         let subtype = MessageSubtype(rawValue: event.subtype!)!
         switch subtype {
         case .MessageChanged:
-            handler.messageChanged(event)
+            messageChanged(event)
         case .MessageDeleted:
-            handler.messageDeleted(event)
+            messageDeleted(event)
         default:
-            handler.messageReceived(event)
+            messageReceived(event)
         }
     }
     

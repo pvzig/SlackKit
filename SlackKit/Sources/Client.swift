@@ -64,8 +64,7 @@ public class Client: WebSocketDelegate {
 
     internal var webSocket: WebSocket?
     internal let api = NetworkInterface()
-    private var dispatcher: EventDispatcher?
-    
+
     private let pingPongQueue = dispatch_queue_create("com.launchsoft.SlackKit", DISPATCH_QUEUE_SERIAL)
     internal var ping: Double?
     internal var pong: Double?
@@ -82,7 +81,6 @@ public class Client: WebSocketDelegate {
         self.pingInterval = pingInterval
         self.timeout = timeout
         self.reconnect = reconnect
-        dispatcher = EventDispatcher(client: self)
         webAPI.rtmStart(simpleLatest, noUnreads: noUnreads, mpimAware: mpimAware, success: {
             (response) -> Void in
             self.initialSetup(response)
@@ -255,7 +253,6 @@ public class Client: WebSocketDelegate {
         connected = false
         authenticated = false
         webSocket = nil
-        dispatcher = nil
         authenticatedUser = nil
         slackEventsDelegate?.clientDisconnected()
         if reconnect == true {
@@ -269,7 +266,7 @@ public class Client: WebSocketDelegate {
         }
         do {
             if let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? [String: AnyObject] {
-                dispatcher?.dispatch(json)
+                dispatch(json)
             }
         }
         catch _ {

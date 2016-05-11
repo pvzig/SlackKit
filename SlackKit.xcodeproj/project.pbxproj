@@ -19,8 +19,6 @@
 		26BBA1961C398E3C00BF7225 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA1891C398E3C00BF7225 /* Client.swift */; };
 		26BBA1971C398E3C00BF7225 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA18A1C398E3C00BF7225 /* Event.swift */; };
 		26BBA1981C398E3C00BF7225 /* EventDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA18B1C398E3C00BF7225 /* EventDelegate.swift */; };
-		26BBA1991C398E3C00BF7225 /* EventDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA18C1C398E3C00BF7225 /* EventDispatcher.swift */; };
-		26BBA19A1C398E3C00BF7225 /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA18D1C398E3C00BF7225 /* EventHandler.swift */; };
 		26BBA19B1C398E3C00BF7225 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA18E1C398E3C00BF7225 /* File.swift */; };
 		26BBA19C1C398E3C00BF7225 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA18F1C398E3C00BF7225 /* Message.swift */; };
 		26BBA19D1C398E3C00BF7225 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA1901C398E3C00BF7225 /* Team.swift */; };
@@ -29,6 +27,8 @@
 		26BBA1A01C398E3C00BF7225 /* UserGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26BBA1931C398E3C00BF7225 /* UserGroup.swift */; };
 		26DF40351C7A0FA300E19241 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DF40341C7A0FA300E19241 /* Attachment.swift */; };
 		26F4BAC31C9DEBD1000910BA /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F4BAC21C9DEBD1000910BA /* Leaderboard.swift */; };
+		C1A85FF91CE3BCEF00756C40 /* EventDispatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A85FF71CE3BCEF00756C40 /* EventDispatching.swift */; };
+		C1A85FFA1CE3BCEF00756C40 /* EventHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A85FF81CE3BCEF00756C40 /* EventHandling.swift */; };
 		FFE3AC870D1C42EF276CCA2D /* Pods_SlackKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407A2ABFC0611867E2BE34D0 /* Pods_SlackKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,8 +50,6 @@
 		26BBA1891C398E3C00BF7225 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Client.swift; path = Sources/Client.swift; sourceTree = "<group>"; };
 		26BBA18A1C398E3C00BF7225 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Event.swift; path = Sources/Event.swift; sourceTree = "<group>"; };
 		26BBA18B1C398E3C00BF7225 /* EventDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDelegate.swift; path = Sources/EventDelegate.swift; sourceTree = "<group>"; };
-		26BBA18C1C398E3C00BF7225 /* EventDispatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDispatcher.swift; path = Sources/EventDispatcher.swift; sourceTree = "<group>"; };
-		26BBA18D1C398E3C00BF7225 /* EventHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventHandler.swift; path = Sources/EventHandler.swift; sourceTree = "<group>"; };
 		26BBA18E1C398E3C00BF7225 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = File.swift; path = Sources/File.swift; sourceTree = "<group>"; };
 		26BBA18F1C398E3C00BF7225 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Sources/Message.swift; sourceTree = "<group>"; };
 		26BBA1901C398E3C00BF7225 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Team.swift; path = Sources/Team.swift; sourceTree = "<group>"; };
@@ -62,6 +60,8 @@
 		26F4BAC21C9DEBD1000910BA /* Leaderboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		407A2ABFC0611867E2BE34D0 /* Pods_SlackKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SlackKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4347F92F3932C96C23B10B2A /* Pods-SlackKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-SlackKit/Pods-SlackKit.release.xcconfig"; sourceTree = "<group>"; };
+		C1A85FF71CE3BCEF00756C40 /* EventDispatching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDispatching.swift; path = Sources/EventDispatching.swift; sourceTree = "<group>"; };
+		C1A85FF81CE3BCEF00756C40 /* EventHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventHandling.swift; path = Sources/EventHandling.swift; sourceTree = "<group>"; };
 		F59B6A12F1C4C4E24C58E1BF /* Pods-SlackKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SlackKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SlackKit/Pods-SlackKit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +128,8 @@
 		2661A6811BBF60E60026F67B /* SlackKit */ = {
 			isa = PBXGroup;
 			children = (
+				C1A85FF71CE3BCEF00756C40 /* EventDispatching.swift */,
+				C1A85FF81CE3BCEF00756C40 /* EventHandling.swift */,
 				26DF40341C7A0FA300E19241 /* Attachment.swift */,
 				26BBA1871C398E3C00BF7225 /* Bot.swift */,
 				26BBA1881C398E3C00BF7225 /* Channel.swift */,
@@ -135,8 +137,6 @@
 				260EC2301C4DC61D0093B253 /* ClientExtensions.swift */,
 				26BBA18A1C398E3C00BF7225 /* Event.swift */,
 				26BBA18B1C398E3C00BF7225 /* EventDelegate.swift */,
-				26BBA18C1C398E3C00BF7225 /* EventDispatcher.swift */,
-				26BBA18D1C398E3C00BF7225 /* EventHandler.swift */,
 				26BBA18E1C398E3C00BF7225 /* File.swift */,
 				26BBA18F1C398E3C00BF7225 /* Message.swift */,
 				260EC2311C4DC61D0093B253 /* NetworkInterface.swift */,
@@ -313,14 +313,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26BBA1991C398E3C00BF7225 /* EventDispatcher.swift in Sources */,
 				26BBA1951C398E3C00BF7225 /* Channel.swift in Sources */,
 				26BBA19F1C398E3C00BF7225 /* User.swift in Sources */,
 				26BBA19E1C398E3C00BF7225 /* Types.swift in Sources */,
 				26BBA1961C398E3C00BF7225 /* Client.swift in Sources */,
-				26BBA19A1C398E3C00BF7225 /* EventHandler.swift in Sources */,
 				26BBA1971C398E3C00BF7225 /* Event.swift in Sources */,
 				26BBA1941C398E3C00BF7225 /* Bot.swift in Sources */,
+				C1A85FF91CE3BCEF00756C40 /* EventDispatching.swift in Sources */,
 				26BBA19B1C398E3C00BF7225 /* File.swift in Sources */,
 				260EC2351C4DC61D0093B253 /* SlackWebAPI.swift in Sources */,
 				26DF40351C7A0FA300E19241 /* Attachment.swift in Sources */,
@@ -329,6 +328,7 @@
 				260EC2331C4DC61D0093B253 /* ClientExtensions.swift in Sources */,
 				26BBA1A01C398E3C00BF7225 /* UserGroup.swift in Sources */,
 				2601D61B1C7646B80012BF22 /* SlackWebAPIErrorDispatcher.swift in Sources */,
+				C1A85FFA1CE3BCEF00756C40 /* EventHandling.swift in Sources */,
 				260EC2341C4DC61D0093B253 /* NetworkInterface.swift in Sources */,
 				26BBA1981C398E3C00BF7225 /* EventDelegate.swift in Sources */,
 			);
