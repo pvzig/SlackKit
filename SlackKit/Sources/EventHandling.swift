@@ -37,9 +37,7 @@ internal extension Client {
             message.text = event.text
             channels[channel]?.messages[ts] = message
             
-            if let delegate = messageEventsDelegate {
-                delegate.messageSent(message)
-            }
+            messageEventsDelegate?.messageSent(message)
         }
     }
     
@@ -47,9 +45,7 @@ internal extension Client {
         if let channel = event.channel, message = event.message, id = channel.id, ts = message.ts {
             channels[id]?.messages[ts] = message
             
-            if let delegate = messageEventsDelegate {
-                delegate.messageReceived(message)
-            }
+            messageEventsDelegate?.messageReceived(message)
         }
     }
     
@@ -57,9 +53,7 @@ internal extension Client {
         if let id = event.channel?.id, nested = event.nestedMessage, ts = nested.ts {
             channels[id]?.messages[ts] = nested
             
-            if let delegate = messageEventsDelegate {
-                delegate.messageChanged(nested)
-            }
+            messageEventsDelegate?.messageChanged(nested)
         }
     }
     
@@ -68,9 +62,7 @@ internal extension Client {
             let message = channels[id]?.messages[key]
             channels[id]?.messages.removeValueForKey(key)
             
-            if let delegate = messageEventsDelegate {
-                delegate.messageDeleted(message)
-            }
+            messageEventsDelegate?.messageDeleted(message)
         }
     }
     
@@ -81,9 +73,7 @@ internal extension Client {
                 if (!channels[channelID]!.usersTyping.contains(userID)) {
                     channels[channelID]?.usersTyping.append(userID)
                     
-                    if let delegate = channelEventsDelegate {
-                        delegate.userTyping(event.channel, user: event.user)
-                    }
+                    channelEventsDelegate?.userTyping(event.channel, user: event.user)
                 }
             }
             
@@ -100,9 +90,7 @@ internal extension Client {
         if let channel = event.channel, id = channel.id {
             channels[id]?.lastRead = event.ts
             
-            if let delegate = channelEventsDelegate {
-                delegate.channelMarked(channel, timestamp: event.ts)
-            }
+            channelEventsDelegate?.channelMarked(channel, timestamp: event.ts)
         }
         //TODO: Recalculate unreads
     }
@@ -111,9 +99,7 @@ internal extension Client {
         if let channel = event.channel, id = channel.id {
             channels[id] = channel
             
-            if let delegate = channelEventsDelegate {
-                delegate.channelCreated(channel)
-            }
+            channelEventsDelegate?.channelCreated(channel)
         }
     }
     
@@ -121,9 +107,7 @@ internal extension Client {
         if let channel = event.channel, id = channel.id {
             channels.removeValueForKey(id)
             
-            if let delegate = channelEventsDelegate {
-                delegate.channelDeleted(channel)
-            }
+            channelEventsDelegate?.channelDeleted(channel)
         }
     }
     
@@ -131,9 +115,7 @@ internal extension Client {
         if let channel = event.channel, id = channel.id {
             channels[id] = event.channel
             
-            if let delegate = channelEventsDelegate {
-                delegate.channelJoined(channel)
-            }
+            channelEventsDelegate?.channelJoined(channel)
         }
     }
     
@@ -142,9 +124,7 @@ internal extension Client {
             if let index = channels[id]?.members?.indexOf(userID) {
                 channels[id]?.members?.removeAtIndex(index)
                 
-                if let delegate = channelEventsDelegate {
-                    delegate.channelLeft(channel)
-                }
+                channelEventsDelegate?.channelLeft(channel)
             }
         }
     }
@@ -153,9 +133,7 @@ internal extension Client {
         if let channel = event.channel, id = channel.id {
             channels[id]?.name = channel.name
             
-            if let delegate = channelEventsDelegate {
-                delegate.channelRenamed(channel)
-            }
+            channelEventsDelegate?.channelRenamed(channel)
         }
     }
     
@@ -163,9 +141,7 @@ internal extension Client {
         if let channel = event.channel, id = channel.id {
             channels[id]?.isArchived = archived
             
-            if let delegate = channelEventsDelegate {
-                delegate.channelArchived(channel)
-            }
+            channelEventsDelegate?.channelArchived(channel)
         }
     }
     
@@ -173,9 +149,7 @@ internal extension Client {
         if let channel = event.channel {
             //TODO: Reload chat history if there are any cached messages before latest
             
-            if let delegate = channelEventsDelegate {
-                delegate.channelHistoryChanged(channel)
-            }
+            channelEventsDelegate?.channelHistoryChanged(channel)
         }
     }
     
@@ -184,9 +158,7 @@ internal extension Client {
         if let dndStatus = event.dndStatus {
             authenticatedUser?.doNotDisturbStatus = dndStatus
             
-            if let delegate = doNotDisturbEventsDelegate {
-                delegate.doNotDisturbUpdated(dndStatus)
-            }
+            doNotDisturbEventsDelegate?.doNotDisturbUpdated(dndStatus)
         }
     }
     
@@ -194,9 +166,7 @@ internal extension Client {
         if let dndStatus = event.dndStatus, user = event.user, id = user.id {
             users[id]?.doNotDisturbStatus = dndStatus
             
-            if let delegate = doNotDisturbEventsDelegate {
-                delegate.doNotDisturbUserUpdated(dndStatus, user: user)
-            }
+            doNotDisturbEventsDelegate?.doNotDisturbUserUpdated(dndStatus, user: user)
         }
     }
     
@@ -205,9 +175,7 @@ internal extension Client {
         if let channel = event.channel, id = channel.id {
             channels[id]?.isOpen = open
             
-            if let delegate = groupEventsDelegate {
-                delegate.groupOpened(channel)
-            }
+            groupEventsDelegate?.groupOpened(channel)
         }
     }
     
@@ -222,9 +190,7 @@ internal extension Client {
             
             files[id] = file
             
-            if let delegate = fileEventsDelegate {
-                delegate.fileProcessed(file)
-            }
+            fileEventsDelegate?.fileProcessed(file)
         }
     }
     
@@ -232,9 +198,7 @@ internal extension Client {
         if let file =  event.file, id = file.id {
             files[id]?.isPublic = false
             
-            if let delegate = fileEventsDelegate {
-                delegate.fileMadePrivate(file)
-            }
+            fileEventsDelegate?.fileMadePrivate(file)
         }
     }
     
@@ -244,9 +208,7 @@ internal extension Client {
                 files.removeValueForKey(id)
             }
             
-            if let delegate = fileEventsDelegate {
-                delegate.fileDeleted(file)
-            }
+            fileEventsDelegate?.fileDeleted(file)
         }
     }
     
@@ -254,9 +216,7 @@ internal extension Client {
         if let file = event.file, id = file.id, comment = event.comment, commentID = comment.id {
             files[id]?.comments[commentID] = comment
             
-            if let delegate = fileEventsDelegate {
-                delegate.fileCommentAdded(file, comment: comment)
-            }
+            fileEventsDelegate?.fileCommentAdded(file, comment: comment)
         }
     }
     
@@ -264,9 +224,7 @@ internal extension Client {
         if let file = event.file, id = file.id, comment = event.comment, commentID = comment.id {
             files[id]?.comments[commentID]?.comment = comment.comment
             
-            if let delegate = fileEventsDelegate {
-                delegate.fileCommentEdited(file, comment: comment)
-            }
+            fileEventsDelegate?.fileCommentEdited(file, comment: comment)
         }
     }
     
@@ -274,9 +232,7 @@ internal extension Client {
         if let file = event.file, id = file.id, comment = event.comment, commentID = comment.id {
             files[id]?.comments.removeValueForKey(commentID)
             
-            if let delegate = fileEventsDelegate {
-                delegate.fileCommentDeleted(file, comment: comment)
-            }
+            fileEventsDelegate?.fileCommentDeleted(file, comment: comment)
         }
     }
     
@@ -285,9 +241,7 @@ internal extension Client {
         if let id = event.channelID, item = event.item {
             channels[id]?.pinnedItems.append(item)
             
-            if let delegate = pinEventsDelegate {
-                delegate.itemPinned(item, channel: channels[id])
-            }
+            pinEventsDelegate?.itemPinned(item, channel: channels[id])
         }
     }
     
@@ -297,9 +251,7 @@ internal extension Client {
                 channels[id]?.pinnedItems = pins
             }
             
-            if let delegate = pinEventsDelegate {
-                delegate.itemUnpinned(event.item, channel: channels[id])
-            }
+            pinEventsDelegate?.itemUnpinned(event.item, channel: channels[id])
         }
     }
     
@@ -317,9 +269,7 @@ internal extension Client {
                 break
             }
             
-            if let delegate = starEventsDelegate {
-                delegate.itemStarred(item, star: star)
-            }
+            starEventsDelegate?.itemStarred(item, star: star)
         }
     }
     
@@ -387,9 +337,7 @@ internal extension Client {
                 break
             }
             
-            if let delegate = reactionEventsDelegate {
-                delegate.reactionAdded(event.reaction, item: event.item, itemUser: event.itemUser)
-            }
+            reactionEventsDelegate?.reactionAdded(event.reaction, item: event.item, itemUser: event.itemUser)
         }
     }
     
@@ -430,9 +378,7 @@ internal extension Client {
                 break
             }
             
-            if let delegate = reactionEventsDelegate {
-                delegate.reactionAdded(event.reaction, item: event.item, itemUser: event.itemUser)
-            }
+            reactionEventsDelegate?.reactionAdded(event.reaction, item: event.item, itemUser: event.itemUser)
         }
     }
     
@@ -441,8 +387,8 @@ internal extension Client {
         if let name = event.name {
             authenticatedUser?.preferences?[name] = event.value
             
-            if let delegate = slackEventsDelegate, value = event.value {
-                delegate.preferenceChanged(name, value: value)
+            if let value = event.value {
+                slackEventsDelegate?.preferenceChanged(name, value: value)
             }
         }
     }
@@ -454,9 +400,7 @@ internal extension Client {
             users[id] = user
             users[id]?.preferences = preferences
             
-            if let delegate = slackEventsDelegate {
-                delegate.userChanged(user)
-            }
+            slackEventsDelegate?.userChanged(user)
         }
     }
     
@@ -465,9 +409,7 @@ internal extension Client {
         if let user = event.user, id = user.id {
             users[id]?.presence = event.presence
             
-            if let delegate = slackEventsDelegate {
-                delegate.presenceChanged(user, presence: event.presence)
-            }
+            slackEventsDelegate?.presenceChanged(user, presence: event.presence)
         }
     }
     
@@ -476,9 +418,7 @@ internal extension Client {
         if let user = event.user, id = user.id {
             users[id] = user
             
-            if let delegate = teamEventsDelegate {
-                delegate.teamJoined(user)
-            }
+            teamEventsDelegate?.teamJoined(user)
         }
     }
     
@@ -486,9 +426,7 @@ internal extension Client {
         if let plan = event.plan {
             team?.plan = plan
             
-            if let delegate = teamEventsDelegate {
-                delegate.teamPlanChanged(plan)
-            }
+            teamEventsDelegate?.teamPlanChanged(plan)
         }
     }
     
@@ -496,8 +434,8 @@ internal extension Client {
         if let name = event.name {
             team?.prefs?[name] = event.value
             
-            if let delegate = teamEventsDelegate, value = event.value {
-                delegate.teamPreferencesChanged(name, value: value)
+            if let value = event.value {
+                teamEventsDelegate?.teamPreferencesChanged(name, value: value)
             }
         }
     }
@@ -506,9 +444,7 @@ internal extension Client {
         if let name = event.name {
             team?.name = name
             
-            if let delegate = teamEventsDelegate {
-                delegate.teamNameChanged(name)
-            }
+            teamEventsDelegate?.teamNameChanged(name)
         }
     }
     
@@ -516,9 +452,7 @@ internal extension Client {
         if let domain = event.domain {
             team?.domain = domain
             
-            if let delegate = teamEventsDelegate {
-                delegate.teamDomainChanged(domain)
-            }
+            teamEventsDelegate?.teamDomainChanged(domain)
         }
     }
     
@@ -526,18 +460,14 @@ internal extension Client {
         if let domain = event.emailDomain {
             team?.emailDomain = domain
             
-            if let delegate = teamEventsDelegate {
-                delegate.teamEmailDomainChanged(domain)
-            }
+            teamEventsDelegate?.teamEmailDomainChanged(domain)
         }
     }
     
     func emojiChanged(event: Event) {
         //TODO: Call emoji.list here
         
-        if let delegate = teamEventsDelegate {
-            delegate.teamEmojiChanged()
-        }
+        teamEventsDelegate?.teamEmojiChanged()
     }
     
     //MARK: - Bots
@@ -545,9 +475,7 @@ internal extension Client {
         if let bot = event.bot, id = bot.id {
             bots[id] = bot
             
-            if let delegate = slackEventsDelegate {
-                delegate.botEvent(bot)
-            }
+            slackEventsDelegate?.botEvent(bot)
         }
     }
     
@@ -556,9 +484,7 @@ internal extension Client {
         if let subteam = event.subteam, id = subteam.id {
             userGroups[id] = subteam
             
-            if let delegate = subteamEventsDelegate {
-                delegate.subteamEvent(subteam)
-            }
+            subteamEventsDelegate?.subteamEvent(subteam)
         }
         
     }
@@ -567,9 +493,7 @@ internal extension Client {
         if let subteamID = event.subteamID, _ = authenticatedUser?.userGroups {
             authenticatedUser?.userGroups![subteamID] = subteamID
             
-            if let delegate = subteamEventsDelegate {
-                delegate.subteamSelfAdded(subteamID)
-            }
+            subteamEventsDelegate?.subteamSelfAdded(subteamID)
         }
     }
     
@@ -577,9 +501,7 @@ internal extension Client {
         if let subteamID = event.subteamID {
             authenticatedUser?.userGroups?.removeValueForKey(subteamID)
             
-            if let delegate = subteamEventsDelegate {
-                delegate.subteamSelfRemoved(subteamID)
-            }
+            subteamEventsDelegate?.subteamSelfRemoved(subteamID)
         }
     }
     
@@ -593,9 +515,7 @@ internal extension Client {
             }
         }
         
-        if let delegate = teamProfileEventsDelegate {
-            delegate.teamProfileChanged(event.profile)
-        }
+        teamProfileEventsDelegate?.teamProfileChanged(event.profile)
     }
     
     func teamProfileDeleted(event: Event) {
@@ -605,9 +525,7 @@ internal extension Client {
             }
         }
         
-        if let delegate = teamProfileEventsDelegate {
-            delegate.teamProfileDeleted(event.profile)
-        }
+        teamProfileEventsDelegate?.teamProfileDeleted(event.profile)
     }
     
     func teamProfileReordered(event: Event) {
@@ -619,18 +537,14 @@ internal extension Client {
             }
         }
         
-        if let delegate = teamProfileEventsDelegate {
-            delegate.teamProfileReordered(event.profile)
-        }
+        teamProfileEventsDelegate?.teamProfileReordered(event.profile)
     }
     
     //MARK: - Authenticated User
     func manualPresenceChange(event: Event) {
         authenticatedUser?.presence = event.presence
         
-        if let delegate = slackEventsDelegate {
-            delegate.manualPresenceChanged(authenticatedUser, presence: event.presence)
-        }
+        slackEventsDelegate?.manualPresenceChanged(authenticatedUser, presence: event.presence)
     }
     
 }
