@@ -23,7 +23,7 @@
 
 import Foundation
 
-public protocol SlackEventsDelegate {
+public protocol SlackEventsDelegate: class {
     func clientConnectionFailed(error: SlackError)
     func clientConnected()
     func clientDisconnected()
@@ -34,14 +34,14 @@ public protocol SlackEventsDelegate {
     func botEvent(bot: Bot)
 }
 
-public protocol MessageEventsDelegate {
+public protocol MessageEventsDelegate: class {
     func messageSent(message: Message)
     func messageReceived(message: Message)
     func messageChanged(message: Message)
     func messageDeleted(message: Message?)
 }
 
-public protocol ChannelEventsDelegate {
+public protocol ChannelEventsDelegate: class {
     func userTyping(channel: Channel?, user: User?)
     func channelMarked(channel: Channel, timestamp: String?)
     func channelCreated(channel: Channel)
@@ -53,16 +53,16 @@ public protocol ChannelEventsDelegate {
     func channelLeft(channel: Channel)
 }
 
-public protocol DoNotDisturbEventsDelegate {
+public protocol DoNotDisturbEventsDelegate: class {
     func doNotDisturbUpdated(dndStatus: DoNotDisturbStatus)
     func doNotDisturbUserUpdated(dndStatus: DoNotDisturbStatus, user: User?)
 }
 
-public protocol GroupEventsDelegate {
+public protocol GroupEventsDelegate: class {
     func groupOpened(group: Channel)
 }
 
-public protocol FileEventsDelegate {
+public protocol FileEventsDelegate: class {
     func fileProcessed(file: File)
     func fileMadePrivate(file: File)
     func fileDeleted(file: File)
@@ -71,21 +71,21 @@ public protocol FileEventsDelegate {
     func fileCommentDeleted(file: File, comment: Comment)
 }
 
-public protocol PinEventsDelegate {
+public protocol PinEventsDelegate: class {
     func itemPinned(item: Item?, channel: Channel?)
     func itemUnpinned(item: Item?, channel: Channel?)
 }
 
-public protocol StarEventsDelegate {
+public protocol StarEventsDelegate: class {
     func itemStarred(item: Item, star: Bool)
 }
 
-public protocol ReactionEventsDelegate {
+public protocol ReactionEventsDelegate: class {
     func reactionAdded(reaction: String?, item: Item?, itemUser: String?)
     func reactionRemoved(reaction: String?, item: Item?, itemUser: String?)
 }
 
-public protocol TeamEventsDelegate {
+public protocol TeamEventsDelegate: class {
     func teamJoined(user: User)
     func teamPlanChanged(plan: String)
     func teamPreferencesChanged(preference: String, value: AnyObject)
@@ -95,13 +95,13 @@ public protocol TeamEventsDelegate {
     func teamEmojiChanged()
 }
 
-public protocol SubteamEventsDelegate {
+public protocol SubteamEventsDelegate: class {
     func subteamEvent(userGroup: UserGroup)
     func subteamSelfAdded(subteamID: String)
     func subteamSelfRemoved(subteamID: String)
 }
 
-public protocol TeamProfileEventsDelegate {
+public protocol TeamProfileEventsDelegate: class {
     func teamProfileChanged(profile: CustomProfile?)
     func teamProfileDeleted(profile: CustomProfile?)
     func teamProfileReordered(profile: CustomProfile?)

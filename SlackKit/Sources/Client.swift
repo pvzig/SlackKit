@@ -39,18 +39,18 @@ public class Client: WebSocketDelegate {
     internal(set) public var sentMessages = [String: Message]()
     
     //MARK: - Delegates
-    public var slackEventsDelegate: SlackEventsDelegate?
-    public var messageEventsDelegate: MessageEventsDelegate?
-    public var doNotDisturbEventsDelegate: DoNotDisturbEventsDelegate?
-    public var channelEventsDelegate: ChannelEventsDelegate?
-    public var groupEventsDelegate: GroupEventsDelegate?
-    public var fileEventsDelegate: FileEventsDelegate?
-    public var pinEventsDelegate: PinEventsDelegate?
-    public var starEventsDelegate: StarEventsDelegate?
-    public var reactionEventsDelegate: ReactionEventsDelegate?
-    public var teamEventsDelegate: TeamEventsDelegate?
-    public var subteamEventsDelegate: SubteamEventsDelegate?
-    public var teamProfileEventsDelegate: TeamProfileEventsDelegate?
+    public weak var slackEventsDelegate: SlackEventsDelegate?
+    public weak var messageEventsDelegate: MessageEventsDelegate?
+    public weak var doNotDisturbEventsDelegate: DoNotDisturbEventsDelegate?
+    public weak var channelEventsDelegate: ChannelEventsDelegate?
+    public weak var groupEventsDelegate: GroupEventsDelegate?
+    public weak var fileEventsDelegate: FileEventsDelegate?
+    public weak var pinEventsDelegate: PinEventsDelegate?
+    public weak var starEventsDelegate: StarEventsDelegate?
+    public weak var reactionEventsDelegate: ReactionEventsDelegate?
+    public weak var teamEventsDelegate: TeamEventsDelegate?
+    public weak var subteamEventsDelegate: SubteamEventsDelegate?
+    public weak var teamProfileEventsDelegate: TeamProfileEventsDelegate?
     
     public var token = "SLACK_AUTH_TOKEN"
     
