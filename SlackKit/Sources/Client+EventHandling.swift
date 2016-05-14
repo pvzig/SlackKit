@@ -1,5 +1,5 @@
 //
-// EventHandling.swift
+// Client+EventHandling.swift
 //
 // Copyright © 2016 Peter Zignego. All rights reserved.
 //

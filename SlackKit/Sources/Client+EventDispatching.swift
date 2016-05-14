@@ -1,5 +1,5 @@
 //
-// EventDispatching.swift
+// Client+EventDispatching.swift
 //
 // Copyright © 2016 Peter Zignego. All rights reserved.
 //

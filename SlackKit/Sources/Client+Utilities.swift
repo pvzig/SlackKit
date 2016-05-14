@@ -1,5 +1,5 @@
 //
-// ClientExtensions.swift
+// Client+EventDispatching.swift
 //
 // Copyright © 2016 Peter Zignego. All rights reserved.
 //
@@ -23,17 +23,17 @@
 
 import Foundation
 
-extension Client {
-    
+public extension Client {
+
     //MARK: - User & Channel
     public func getChannelIDByName(name: String) -> String? {
         return channels.filter{$0.1.name == stripString(name)}.first?.0
     }
-    
+
     public func getUserIDByName(name: String) -> String? {
         return users.filter{$0.1.name == stripString(name)}.first?.0
     }
-    
+
     public func getImIDForUserWithID(id: String, success: (imID: String?)->Void, failure: (error: SlackError)->Void) {
         let ims = channels.filter{$0.1.isIM == true}
         let channel = ims.filter{$0.1.user == id}.first
@@ -43,7 +43,7 @@ extension Client {
             webAPI.openIM(id, success: success, failure: failure)
         }
     }
-    
+
     //MARK: - Utilities
     internal func stripString(string: String) -> String? {
         var strippedString = string
@@ -52,45 +52,4 @@ extension Client {
         }
         return strippedString
     }
-}
-
-public enum AttachmentColor: String {
-    case Good = "good"
-    case Warning = "warning"
-    case Danger = "danger"
-}
-
-public extension NSDate {
-
-    func slackTimestamp() -> Double {
-        return NSNumber(double: timeIntervalSince1970).doubleValue
-    }
-    
-}
-
-internal extension String {
-    
-    func slackFormatEscaping() -> String {
-        var escapedString = stringByReplacingOccurrencesOfString("&", withString: "&amp;")
-        escapedString = stringByReplacingOccurrencesOfString("<", withString: "&lt;")
-        escapedString = stringByReplacingOccurrencesOfString(">", withString: "&gt;")
-        return escapedString
-    }
-
-}
-
-internal extension Array {
-
-    func objectArrayFromDictionaryArray<T>(intializer:([String: AnyObject])->T?) -> [T] {
-        var returnValue = [T]()
-        for object in self {
-            if let dictionary = object as? [String: AnyObject] {
-                if let value = intializer(dictionary) {
-                    returnValue.append(value)
-                }
-            }
-        }
-        return returnValue
-    }
-    
 }
