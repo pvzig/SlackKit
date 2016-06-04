@@ -22,7 +22,8 @@
 // THE SOFTWARE.
 
 public struct Channel {
-    
+
+    public weak var client: Client?
     public let id: String?
     public let created: Int?
     public let creator: String?
@@ -48,7 +49,7 @@ public struct Channel {
     internal(set) public var pinnedItems = [Item]()
     internal(set) public var usersTyping = [String]()
     internal(set) public var messages = [String: Message]()
-    
+
     internal init(channel: [String: AnyObject]?) {
         id = channel?["id"] as? String
         name = channel?["name"] as? String
@@ -78,7 +79,12 @@ public struct Channel {
         }
     }
     
-    internal init(id:String?) {
+    internal init(client: Client, channel: [String: AnyObject]?) {
+        self.init(channel: channel)
+        self.client = client
+    }
+
+    internal init(id: String?) {
         self.id = id
         created = nil
         creator = nil
