@@ -47,7 +47,7 @@ public final class SlackKit: OAuthDelegate {
         self.clientOptions = clientOptions
         let client = Client(apiToken: token)
         dispatch_async(dispatch_get_main_queue(), {
-            self.onClientInitalization?(client)
+            self.onClientInitialization?(client)
         })
         clients[token] = client
         client.connect(options: self.clientOptions)
@@ -63,13 +63,13 @@ public final class SlackKit: OAuthDelegate {
         // User auth
         if let token = response.accessToken {
             let client = Client(apiToken: token)
-            self.onClientInitalization?(client)
+            self.onClientInitialization?(client)
             clients[token] = client
         }
         // Bot User
         if let token = response.bot?.botToken {
             let client = Client(apiToken: token)
-            self.onClientInitalization?(client)
+            self.onClientInitialization?(client)
             clients[token] = client
             client.connect(options: self.clientOptions)
         }
