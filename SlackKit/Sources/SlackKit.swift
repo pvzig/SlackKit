@@ -28,9 +28,20 @@ public final class SlackKit: OAuthDelegate {
     internal(set) public var oauth: OAuthServer?
     internal(set) public var clients: [String: Client] = [:]
     private let clientOptions: ClientOptions
-    // Initalization block
-    public var onClientInitalization: ((Client) -> Void)?
-    
+
+    // Initialization block
+    public var onClientInitialization: ((Client) -> Void)?
+
+    @available(*, deprecated=2.0, renamed="onClientInitialization")
+    public var onClientInitalization: ((Client) -> Void)? {
+        set {
+            onClientInitialization = newValue
+        }
+        get {
+            return onClientInitialization
+        }
+    }
+
     // If you already have an API token
     public init(withAPIToken token: String, clientOptions: ClientOptions = ClientOptions()) {
         self.clientOptions = clientOptions
