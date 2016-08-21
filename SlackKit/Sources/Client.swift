@@ -223,11 +223,11 @@ public final class Client: WebSocketDelegate {
     }
     
     // MARK: - Utilities
-    private func enumerateObjects(array: [AnyObject]?, initalizer: ([String: AnyObject])-> Void) {
+    private func enumerateObjects(array: [AnyObject]?, initializer: ([String: AnyObject])-> Void) {
         if let array = array {
             for object in array {
                 if let dictionary = object as? [String: AnyObject] {
-                    initalizer(dictionary)
+                    initializer(dictionary)
                 }
             }
         }

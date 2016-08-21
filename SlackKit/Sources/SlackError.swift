@@ -73,6 +73,7 @@ public enum SlackError: String, ErrorType {
     case MigrationInProgress = "migration_in_progress"
     case MissingDuration = "missing_duration"
     case MissingPostType = "missing_post_type"
+    case MissingScope = "missing_scope"
     case NameTaken = "name_taken"
     case NoChannel = "no_channel"
     case NoComment = "no_comment"
