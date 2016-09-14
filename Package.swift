@@ -29,7 +29,7 @@ let package = Package(
     dependencies: [
         .Package(url: "https://github.com/pvzig/swifter.git",
                  majorVersion: 3),
-        .Package(url: "https://github.com/pvzig/Starscream.git", majorVersion: 1, minor: 2)
+        .Package(url: "https://github.com/zirinisp/Starscream.git", majorVersion: 1, minor: 2)
     ],
     exclude: ["Examples", "Carthage", "Pods"]
 )
