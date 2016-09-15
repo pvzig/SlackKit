@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.source_files = 'SlackKit/Sources/*.swift'  
   s.frameworks = 'Foundation'
-  s.dependency 'Starscream', '~> 1.2'
+  s.dependency 'Starscream'
   s.dependency 'Swifter'
 end
 
