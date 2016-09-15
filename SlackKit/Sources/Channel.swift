@@ -49,7 +49,7 @@ public struct Channel {
     internal(set) public var usersTyping = [String]()
     internal(set) public var messages = [String: Message]()
     
-    internal init(channel: [String: AnyObject]?) {
+    internal init(channel: [String: Any]?) {
         id = channel?["id"] as? String
         name = channel?["name"] as? String
         created = channel?["created"] as? Int
@@ -62,8 +62,8 @@ public struct Channel {
         isUserDeleted = channel?["is_user_deleted"] as? Bool
         user = channel?["user"] as? String
         isOpen = channel?["is_open"] as? Bool
-        topic = Topic(topic: channel?["topic"] as? [String: AnyObject])
-        purpose = Topic(topic: channel?["purpose"] as? [String: AnyObject])
+        topic = Topic(topic: channel?["topic"] as? [String: Any])
+        purpose = Topic(topic: channel?["purpose"] as? [String: Any])
         isMember = channel?["is_member"] as? Bool
         lastRead = channel?["last_read"] as? String
         unread = channel?["unread_count"] as? Int
@@ -71,7 +71,7 @@ public struct Channel {
         hasPins = channel?["has_pins"] as? Bool
         members = channel?["members"] as? [String]
 
-        if let latestMsgDictionary = channel?["latest"] as? [String: AnyObject] {
+        if let latestMsgDictionary = channel?["latest"] as? [String: Any] {
             latest = Message(message: latestMsgDictionary)
         } else {
             latest = Message(ts: channel?["latest"] as? String)

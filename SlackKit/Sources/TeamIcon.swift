@@ -31,7 +31,7 @@ public struct TeamIcon {
     internal(set) public var imageOriginal: String?
     internal(set) public var imageDefault: Bool?
     
-    internal init(icon: [String: AnyObject]?) {
+    internal init(icon: [String: Any]?) {
         image34 = icon?["image_34"] as? String
         image44 = icon?["image_44"] as? String
         image68 = icon?["image_68"] as? String

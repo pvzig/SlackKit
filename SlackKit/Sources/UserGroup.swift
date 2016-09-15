@@ -37,11 +37,11 @@ public struct UserGroup {
     public let createdBy: String?
     internal(set) public var updatedBy: String?
     internal(set) public var deletedBy: String?
-    internal(set) public var preferences: [String: AnyObject]?
+    internal(set) public var preferences: [String: Any]?
     internal(set) public var users: [String]?
     internal(set) public var userCount: Int?
     
-    internal init(userGroup: [String: AnyObject]?) {
+    internal init(userGroup: [String: Any]?) {
         id = userGroup?["id"] as? String
         teamID = userGroup?["team_id"] as? String
         isUserGroup = userGroup?["is_usergroup"] as? Bool
@@ -56,7 +56,7 @@ public struct UserGroup {
         createdBy = userGroup?["created_by"] as? String
         updatedBy = userGroup?["updated_by"] as? String
         deletedBy = userGroup?["deleted_by"] as? String
-        preferences = userGroup?["prefs"] as? [String: AnyObject]
+        preferences = userGroup?["prefs"] as? [String: Any]
         users = userGroup?["users"] as? [String]
         if let count = userGroup?["user_count"] as? String {
             userCount = Int(count)

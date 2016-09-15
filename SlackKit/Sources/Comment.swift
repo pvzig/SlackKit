@@ -30,7 +30,7 @@ public struct Comment {
     internal(set) public var stars: Int?
     internal(set) public var reactions = [Reaction]()
     
-    internal init(comment:[String: AnyObject]?) {
+    internal init(comment:[String: Any]?) {
         id = comment?["id"] as? String
         created = comment?["created"] as? Int
         user = comment?["user"] as? String

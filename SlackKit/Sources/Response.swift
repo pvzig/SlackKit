@@ -33,8 +33,8 @@ public struct Response {
         self.attachments = attachments
     }
     
-    internal func json() -> [String: AnyObject] {
-        var json = [String : AnyObject]()
+    internal func json() -> [String: Any] {
+        var json = [String : Any]()
         json["text"] = text
         json["response_type"] = responseType?.rawValue
         json["attachments"] = attachments?.map({$0.dictionary()})

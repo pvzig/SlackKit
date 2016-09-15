@@ -79,7 +79,7 @@ public protocol ReactionEventsDelegate: class {
 }
 
 public protocol SlackEventsDelegate: class {
-    func preferenceChanged(_ client: Client, preference: String, value: AnyObject?)
+    func preferenceChanged(_ client: Client, preference: String, value: Any?)
     func userChanged(_ client: Client, user: User)
     func presenceChanged(_ client: Client, user: User, presence: String)
     func manualPresenceChanged(_ client: Client, user: User, presence: String)
@@ -89,7 +89,7 @@ public protocol SlackEventsDelegate: class {
 public protocol TeamEventsDelegate: class {
     func teamJoined(_ client: Client, user: User)
     func teamPlanChanged(_ client: Client, plan: String)
-    func teamPreferencesChanged(_ client: Client, preference: String, value: AnyObject?)
+    func teamPreferencesChanged(_ client: Client, preference: String, value: Any?)
     func teamNameChanged(_ client: Client, name: String)
     func teamDomainChanged(_ client: Client, domain: String)
     func teamEmailDomainChanged(_ client: Client, domain: String)

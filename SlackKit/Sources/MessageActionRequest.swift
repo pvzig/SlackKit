@@ -35,17 +35,17 @@ internal struct MessageActionRequest: Request {
     let originalMessage: Message?
     let responseURL: String
     
-    init(response: [String: AnyObject]?) {
-        action = (response?["actions"] as? [[String:AnyObject]])?.map({Action(action: $0)}).first
+    init(response: [String: Any]?) {
+        action = (response?["actions"] as? [[String:Any]])?.map({Action(action: $0)}).first
         callbackID = response?["callback_id"] as? String
-        team = Team(team: response?["team"] as? [String: AnyObject])
-        channel = Channel(channel: response?["channel"] as? [String: AnyObject])
-        user = User(user: response?["channel"] as? [String: AnyObject])
+        team = Team(team: response?["team"] as? [String: Any])
+        channel = Channel(channel: response?["channel"] as? [String: Any])
+        user = User(user: response?["channel"] as? [String: Any])
         actionTS = response?["action_ts"] as? String
         messageTS = response?["message_ts"] as? String
         attachmentID = response?["attachment_id"] as? String
         token = response?["token"] as? String
-        originalMessage = Message(message: response?["original_message"] as? [String: AnyObject])
+        originalMessage = Message(message: response?["original_message"] as? [String: Any])
         responseURL = response?["response_url"] as? String ?? ""
     }
     

@@ -42,7 +42,7 @@ public struct Attachment {
     public let footerIcon: String?
     public let ts: Int?
 
-    internal init(attachment: [String: AnyObject]?) {
+    internal init(attachment: [String: Any]?) {
         fallback = attachment?["fallback"] as? String
         callbackID = attachment?["callback_id"] as? String
         type = attachment?["attachment_type"] as? String
@@ -59,8 +59,8 @@ public struct Attachment {
         footer = attachment?["footer"] as? String
         footerIcon = attachment?["footer_icon"] as? String
         ts = attachment?["ts"] as? Int
-        fields = (attachment?["fields"] as? [[String: AnyObject]])?.map { AttachmentField(field: $0) }
-        actions = (attachment?["actions"] as? [[String: AnyObject]])?.map { Action(action: $0) }
+        fields = (attachment?["fields"] as? [[String: Any]])?.map { AttachmentField(field: $0) }
+        actions = (attachment?["actions"] as? [[String: Any]])?.map { Action(action: $0) }
     }
     
     public init(fallback: String, title:String, callbackID: String? = nil, type: String? = nil, colorHex: String? = nil, pretext: String? = nil, authorName: String? = nil, authorLink: String? = nil, authorIcon: String? = nil, titleLink: String? = nil, text: String? = nil, fields: [AttachmentField]? = nil, actions: [Action]? = nil, imageURL: String? = nil, thumbURL: String? = nil, footer: String? = nil, footerIcon:String? = nil, ts:Int? = nil) {
@@ -84,8 +84,8 @@ public struct Attachment {
         self.ts = ts
     }
     
-    internal func dictionary() -> [String: AnyObject] {
-        var attachment = [String: AnyObject]()
+    internal func dictionary() -> [String: Any] {
+        var attachment = [String: Any]()
         attachment["fallback"] = fallback
         attachment["callback_id"] = callbackID
         attachment["attachment_type"] = type

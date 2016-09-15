@@ -25,7 +25,7 @@ public struct Reaction {
     public let name: String?
     internal(set) public var user: String?
     
-    internal init(reaction:[String: AnyObject]?) {
+    internal init(reaction:[String: Any]?) {
         name = reaction?["name"] as? String
     }
     
@@ -34,7 +34,7 @@ public struct Reaction {
         self.user = user
     }
     
-    static func reactionsFromArray(_ array: [[String: AnyObject]]?) -> [Reaction] {
+    static func reactionsFromArray(_ array: [[String: Any]]?) -> [Reaction] {
         var reactions = [Reaction]()
         if let array = array {
             for reaction in array {

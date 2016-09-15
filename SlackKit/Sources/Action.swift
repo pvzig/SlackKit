@@ -30,13 +30,13 @@ public struct Action {
     public let style: ActionStyle?
     public let confirm: Confirm?
     
-    internal init(action:[String: AnyObject]?) {
+    internal init(action:[String: Any]?) {
         name = action?["name"] as? String
         text = action?["text"] as? String
         type = action?["type"] as? String
         value = action?["value"] as? String
         style = ActionStyle(rawValue: action?["style"] as? String ?? "")
-        confirm = Confirm(confirm:action?["confirm"] as? [String: AnyObject])
+        confirm = Confirm(confirm:action?["confirm"] as? [String: Any])
     }
     
     public init(name: String, text: String, style: ActionStyle = .Default, value: String? = nil, confirm: Confirm? = nil) {
@@ -48,8 +48,8 @@ public struct Action {
         self.confirm = confirm
     }
     
-    internal func dictionary() -> [String: AnyObject] {
-        var dict = [String: AnyObject]()
+    internal func dictionary() -> [String: Any] {
+        var dict = [String: Any]()
         dict["name"] = name
         dict["text"] = text
         dict["type"] = type
@@ -66,7 +66,7 @@ public struct Action {
         public let okText: String?
         public let dismissText: String?
         
-        internal init(confirm:[String: AnyObject]?) {
+        internal init(confirm:[String: Any]?) {
             title = confirm?["title"] as? String
             text = confirm?["text"] as? String
             okText = confirm?["ok_text"] as? String
@@ -80,8 +80,8 @@ public struct Action {
             self.dismissText = dismissText
         }
         
-        internal func dictionary() -> [String: AnyObject] {
-            var dict = [String: AnyObject]()
+        internal func dictionary() -> [String: Any] {
+            var dict = [String: Any]()
             dict["title"] = title
             dict["text"] = text
             dict["ok_text"] = okText

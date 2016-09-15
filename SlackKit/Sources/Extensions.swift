@@ -42,7 +42,7 @@ internal extension String {
 
 }
 
-internal extension Dictionary where Key: ExpressibleByStringLiteral, Value: AnyObject {
+internal extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
 
     var requestStringFromParameters: String {
         var requestString = ""

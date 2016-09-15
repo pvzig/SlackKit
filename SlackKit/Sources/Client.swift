@@ -103,7 +103,7 @@ public final class Client: WebSocketDelegate {
     }
     
     private func formatMessageToSlackJsonString(_ message: (msg: String, channel: String)) throws -> Data {
-        let json: [String: AnyObject] = [
+        let json: [String: Any] = [
             "id": Date().slackTimestamp(),
             "type": "message",
             "channel": message.channel,
@@ -113,12 +113,12 @@ public final class Client: WebSocketDelegate {
         return try JSONSerialization.data(withJSONObject: json, options: [])
     }
     
-    private func addSentMessage(_ dictionary: [String: AnyObject]) {
+    private func addSentMessage(_ dictionary: [String: Any]) {
         var message = dictionary
         guard let id = message["id"] as? NSNumber else {
             return
         }
-        let ts = String(id)
+        let ts = String(describing: id)
         message.removeValue(forKey: "id")
         message["ts"] = ts
         message["user"] = self.authenticatedUser?.id
@@ -142,7 +142,7 @@ public final class Client: WebSocketDelegate {
         guard connected else {
             return
         }
-        let json: [String: AnyObject] = [
+        let json: [String: Any] = [
             "id": Date().slackTimestamp(),
             "type": "ping",
         ]
@@ -169,43 +169,43 @@ public final class Client: WebSocketDelegate {
     }
     
     //MARK: - Client setup
-    private func initialSetup(_ json: [String: AnyObject]) {
-        team = Team(team: json["team"] as? [String: AnyObject])
-        authenticatedUser = User(user: json["self"] as? [String: AnyObject])
-        authenticatedUser?.doNotDisturbStatus = DoNotDisturbStatus(status: json["dnd"] as? [String: AnyObject])
+    private func initialSetup(_ json: [String: Any]) {
+        team = Team(team: json["team"] as? [String: Any])
+        authenticatedUser = User(user: json["self"] as? [String: Any])
+        authenticatedUser?.doNotDisturbStatus = DoNotDisturbStatus(status: json["dnd"] as? [String: Any])
         enumerateObjects(json["users"] as? Array) { (user) in self.addUser(user) }
         enumerateObjects(json["channels"] as? Array) { (channel) in self.addChannel(channel) }
         enumerateObjects(json["groups"] as? Array) { (group) in self.addChannel(group) }
         enumerateObjects(json["mpims"] as? Array) { (mpim) in self.addChannel(mpim) }
         enumerateObjects(json["ims"] as? Array) { (ims) in self.addChannel(ims) }
         enumerateObjects(json["bots"] as? Array) { (bots) in self.addBot(bots) }
-        enumerateSubteams(json["subteams"] as? [String: AnyObject])
+        enumerateSubteams(json["subteams"] as? [String: Any])
     }
     
-    private func addUser(_ aUser: [String: AnyObject]) {
+    private func addUser(_ aUser: [String: Any]) {
         let user = User(user: aUser)
         if let id = user.id {
             users[id] = user
         }
     }
     
-    private func addChannel(_ aChannel: [String: AnyObject]) {
+    private func addChannel(_ aChannel: [String: Any]) {
         let channel = Channel(channel: aChannel)
         if let id = channel.id {
             channels[id] = channel
         }
     }
     
-    private func addBot(_ aBot: [String: AnyObject]) {
+    private func addBot(_ aBot: [String: Any]) {
         let bot = Bot(bot: aBot)
         if let id = bot.id {
             bots[id] = bot
         }
     }
     
-    private func enumerateSubteams(_ subteams: [String: AnyObject]?) {
+    private func enumerateSubteams(_ subteams: [String: Any]?) {
         if let subteams = subteams {
-            if let all = subteams["all"] as? [[String: AnyObject]] {
+            if let all = subteams["all"] as? [[String: Any]] {
                 for item in all {
                     let u = UserGroup(userGroup: item)
                     self.userGroups[u.id!] = u
@@ -221,10 +221,10 @@ public final class Client: WebSocketDelegate {
     }
     
     // MARK: - Utilities
-    private func enumerateObjects(_ array: [AnyObject]?, initalizer: ([String: AnyObject])-> Void) {
+    private func enumerateObjects(_ array: [Any]?, initalizer: ([String: Any])-> Void) {
         if let array = array {
             for object in array {
-                if let dictionary = object as? [String: AnyObject] {
+                if let dictionary = object as? [String: Any] {
                     initalizer(dictionary)
                 }
             }
@@ -232,7 +232,7 @@ public final class Client: WebSocketDelegate {
     }
     
     // MARK: - WebSocketDelegate
-    public func websocketDidConnect(socket: WebSocket) {
+    public func websocketDidConnect(_ socket: WebSocket) {
         if let pingInterval = options?.pingInterval {
             pingRTMServerAtInterval(pingInterval)
         }
@@ -253,7 +253,7 @@ public final class Client: WebSocketDelegate {
             return
         }
 
-        if let json = (try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)) as? [String: AnyObject] {
+        if let json = (try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)) as? [String: Any] {
             dispatch(json)
         }
     }

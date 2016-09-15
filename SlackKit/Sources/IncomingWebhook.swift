@@ -32,7 +32,7 @@ public struct IncomingWebhook {
     public let iconEmoji: String?
     public let iconURL: String?
     
-    internal init(webhook: [String: AnyObject]?) {
+    internal init(webhook: [String: Any]?) {
         url = webhook?["url"] as? String
         channel = webhook?["channel"] as? String
         configurationURL = webhook?["configuration_url"] as? String
@@ -60,7 +60,7 @@ public struct IncomingWebhook {
         }
     }
     
-    private func jsonBody(_ response: [String: AnyObject]) -> [String: AnyObject] {
+    private func jsonBody(_ response: [String: Any]) -> [String: Any] {
         var json = response
         json["channel"] = channel
         json["username"] = username

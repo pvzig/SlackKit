@@ -60,16 +60,16 @@ public class Server {
         case .text(let body):
             return .ok(.text(body))
         case .json(let response):
-            return .ok(.json(response.json()))
+            return .ok(.json(response.json() as AnyObject))
         case .badRequest:
             return .badRequest(.text("Bad request."))
         }
     }
     
-    internal func dictionaryFromRequest(_ body: [UInt8]) -> [String: AnyObject]? {
+    internal func dictionaryFromRequest(_ body: [UInt8]) -> [String: Any]? {
         let string = String(data: Data(bytes: UnsafePointer<UInt8>(body), count: body.count), encoding: String.Encoding.utf8)
         if let body = string?.components(separatedBy: "&") {
-            var dict: [String: AnyObject] = [:]
+            var dict: [String: Any] = [:]
             for argument in body {
                 let kv = argument.components(separatedBy: "=")
                 if let key = kv.first, let value = kv.last {
@@ -81,11 +81,11 @@ public class Server {
         return nil
     }
     
-    internal func jsonFromRequest(_ string: String) -> [String: AnyObject]? {
+    internal func jsonFromRequest(_ string: String) -> [String: Any]? {
         guard let data = string.data(using: String.Encoding.utf8) else {
             return nil
         }
-        return (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: AnyObject] ?? nil
+        return (try? JSONSerialization.jsonObject(with: data, options: [])) as? [String: Any] ?? nil
     }
     
 }

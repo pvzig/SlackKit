@@ -37,7 +37,7 @@ public struct User {
         internal(set) public var image192: String?
         internal(set) public var customProfile: CustomProfile?
         
-        internal init(profile: [String: AnyObject]?) {
+        internal init(profile: [String: Any]?) {
             firstName = profile?["first_name"] as? String
             lastName = profile?["last_name"] as? String
             realName = profile?["real_name"] as? String
@@ -49,7 +49,7 @@ public struct User {
             image48 = profile?["image_48"] as? String
             image72 = profile?["image_72"] as? String
             image192 = profile?["image_192"] as? String
-            customProfile = CustomProfile(customFields: profile?["fields"] as? [String: AnyObject])
+            customProfile = CustomProfile(customFields: profile?["fields"] as? [String: Any])
         }
     }
     
@@ -73,15 +73,15 @@ public struct User {
     internal(set) public var timeZone: String?
     internal(set) public var timeZoneLabel: String?
     internal(set) public var timeZoneOffSet: Int?
-    internal(set) public var preferences: [String: AnyObject]?
+    internal(set) public var preferences: [String: Any]?
     // Client properties
     internal(set) public var userGroups: [String: String]?
     
-    internal init(user: [String: AnyObject]?) {
+    internal init(user: [String: Any]?) {
         id = user?["id"] as? String
         name = user?["name"] as? String
         deleted = user?["deleted"] as? Bool
-        profile = Profile(profile: user?["profile"] as? [String: AnyObject])
+        profile = Profile(profile: user?["profile"] as? [String: Any])
         color = user?["color"] as? String
         isAdmin = user?["is_admin"] as? Bool
         isOwner = user?["is_owner"] as? Bool
@@ -96,7 +96,7 @@ public struct User {
         timeZone = user?["tz"] as? String
         timeZoneLabel = user?["tz_label"] as? String
         timeZoneOffSet = user?["tz_offset"] as? Int
-        preferences = user?["prefs"] as? [String: AnyObject]
+        preferences = user?["prefs"] as? [String: Any]
     }
     
     internal init(id: String?) {

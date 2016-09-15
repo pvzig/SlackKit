@@ -1,0 +1,31 @@
+PODS:
+  - Starscream (1.1.3)
+  - Swifter (1.2.6)
+
+DEPENDENCIES:
+  - Starscream (from `https://github.com/zirinisp/Starscream.git`, branch `swift3`)
+  - Swifter (from `https://github.com/mhmiles/swifter.git`, branch `swift3`)
+
+EXTERNAL SOURCES:
+  Starscream:
+    :branch: swift3
+    :git: https://github.com/zirinisp/Starscream.git
+  Swifter:
+    :branch: swift3
+    :git: https://github.com/mhmiles/swifter.git
+
+CHECKOUT OPTIONS:
+  Starscream:
+    :commit: b1472f2a99a747ffda35c43ac4eb58b73c59722a
+    :git: https://github.com/zirinisp/Starscream.git
+  Swifter:
+    :commit: 1ce59ce7e2669611d743727363456332b3081d1f
+    :git: https://github.com/mhmiles/swifter.git
+
+SPEC CHECKSUMS:
+  Starscream: d662732354b40dd19ed1ece3e3c44c80b536b83c
+  Swifter: c6f13d053398f1e2f209c7a394dfd5e863ae0157
+
+PODFILE CHECKSUM: 8e62044091f118aefde99007e4aa4af691729a4c
+
+COCOAPODS: 1.1.0.rc.2

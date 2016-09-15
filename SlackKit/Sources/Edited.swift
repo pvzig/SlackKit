@@ -25,7 +25,7 @@ public struct Edited {
     public let user: String?
     public let ts: String?
     
-    internal init(edited:[String: AnyObject]?) {
+    internal init(edited:[String: Any]?) {
         user = edited?["user"] as? String
         ts = edited?["ts"] as? String
     }

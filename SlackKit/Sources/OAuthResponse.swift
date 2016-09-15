@@ -31,14 +31,14 @@ internal struct OAuthResponse {
     let incomingWebhook: IncomingWebhook?
     let bot: Bot?
     
-    init(response: [String: AnyObject]?) {
+    init(response: [String: Any]?) {
         accessToken = response?["access_token"] as? String
         scope = (response?["scope"] as? String)?.components(separatedBy: ",").flatMap{Scope(rawValue:$0)}
         userID = response?["user_id"] as? String
         teamName = response?["team_name"] as? String
         teamID = response?["team_id"] as? String
-        incomingWebhook = IncomingWebhook(webhook: response?["incoming_webhook"] as? [String: AnyObject])
-        bot = Bot(botUser: response?["bot"] as? [String: AnyObject])
+        incomingWebhook = IncomingWebhook(webhook: response?["incoming_webhook"] as? [String: Any])
+        bot = Bot(botUser: response?["bot"] as? [String: Any])
     }
     
 }

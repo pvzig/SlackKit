@@ -43,11 +43,11 @@ public extension Client {
         return id
     }
 
-    public func getImIDForUserWithID(_ id: String, success: (imID: String?)->Void, failure: (error: SlackError)->Void) {
+    public func getImIDForUserWithID(_ id: String, success: @escaping (_ imID: String?)->Void, failure: @escaping (_ error: SlackError)->Void) {
         let ims = channels.filter{$0.1.isIM == true}
         let channel = ims.filter{$0.1.user == id}.first
         if let channel = channel {
-            success(imID: channel.0)
+            success(channel.0)
         } else {
             webAPI.openIM(id, success: success, failure: failure)
         }

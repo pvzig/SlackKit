@@ -23,7 +23,7 @@
 
 internal extension Client {
 
-    func dispatch(_ event: [String: AnyObject]) {
+    func dispatch(_ event: [String: Any]) {
         let event = Event(event: event)
         guard let type = event.type else {
             return

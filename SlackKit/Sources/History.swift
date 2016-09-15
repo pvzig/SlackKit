@@ -29,11 +29,11 @@ public struct History {
     internal(set) public var messages = [Message]()
     public let hasMore: Bool?
     
-    internal init(history: [String: AnyObject]?) {
+    internal init(history: [String: Any]?) {
         if let latestStr = history?["latest"] as? String, let latestDouble = Double(latestStr) {
             latest = Date(timeIntervalSince1970: TimeInterval(latestDouble))
         }
-        if let msgs = history?["messages"] as? [[String: AnyObject]] {
+        if let msgs = history?["messages"] as? [[String: Any]] {
             for message in msgs {
                 messages.append(Message(message: message))
             }
