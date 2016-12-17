@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "263993951CE90EE0004A6E93"
+               BlueprintIdentifier = "26072A331BB48B3A00CD650C"
                BuildableName = "SlackKit.framework"
-               BlueprintName = "SlackKit iOS"
+               BlueprintName = "SlackKit"
                ReferencedContainer = "container:SlackKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "263993951CE90EE0004A6E93"
+            BlueprintIdentifier = "26072A331BB48B3A00CD650C"
             BuildableName = "SlackKit.framework"
-            BlueprintName = "SlackKit iOS"
+            BlueprintName = "SlackKit"
             ReferencedContainer = "container:SlackKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "263993951CE90EE0004A6E93"
+            BlueprintIdentifier = "26072A331BB48B3A00CD650C"
             BuildableName = "SlackKit.framework"
-            BlueprintName = "SlackKit iOS"
+            BlueprintName = "SlackKit"
             ReferencedContainer = "container:SlackKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
