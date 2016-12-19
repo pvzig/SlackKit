@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "SlackKit"
-  s.version          = "3.1.5"
+  s.version          = "3.2.0"
   s.summary          = "a Slack client library for OS X, iOS, and tvOS written in Swift"
   s.homepage         = "https://github.com/pvzig/SlackKit"
   s.license          = 'MIT'
