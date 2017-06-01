@@ -152,6 +152,9 @@ internal extension Client {
             subteamAddedSelf(event)
         case .subteamSelfRemoved:
             subteamRemovedSelf(event)
+        case .desktopNotification:
+            // implement if needed.
+            break
         case .error:
             print("Error: \(anEvent)")
         case .unknown:

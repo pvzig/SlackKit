@@ -91,6 +91,7 @@ internal enum EventType: String {
     case subteamUpdated = "subteam_updated"
     case subteamSelfAdded = "subteam_self_added"
     case subteamSelfRemoved = "subteam_self_removed"
+    case desktopNotification = "desktop_notification"
     case ok = "ok"
     case error = "error"
     case unknown = "unknown"
