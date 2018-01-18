@@ -1,0 +1,106 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CommonCrypto",
+        "repositoryURL": "https://github.com/IBM-Swift/CommonCrypto.git",
+        "state": {
+          "branch": null,
+          "revision": "9156d238dbc4c15455b77b45e721b2bb0b995e31",
+          "version": "0.1.5"
+        }
+      },
+      {
+        "package": "Cryptor",
+        "repositoryURL": "https://github.com/IBM-Swift/BlueCryptor",
+        "state": {
+          "branch": null,
+          "revision": "12f9be466d1166b16da8cb2a9d549098990248d1",
+          "version": "0.8.25"
+        }
+      },
+      {
+        "package": "SKClient",
+        "repositoryURL": "https://github.com/SlackKit/SKClient",
+        "state": {
+          "branch": null,
+          "revision": "2647133dc584b835924941222178c27cf14e6ba1",
+          "version": "4.0.1"
+        }
+      },
+      {
+        "package": "SKCore",
+        "repositoryURL": "https://github.com/SlackKit/SKCore",
+        "state": {
+          "branch": null,
+          "revision": "a5fc6bb9ed9cd24a1b7fc3f7b3b23180f23c3282",
+          "version": "4.0.4"
+        }
+      },
+      {
+        "package": "SKRTMAPI",
+        "repositoryURL": "https://github.com/caiofbpa/SKRTMAPI",
+        "state": {
+          "branch": "use-cross-platform-starscream",
+          "revision": "a8aa9436a1fe7b1af88781544179046a340d2952",
+          "version": null
+        }
+      },
+      {
+        "package": "SKServer",
+        "repositoryURL": "https://github.com/SlackKit/SKServer",
+        "state": {
+          "branch": null,
+          "revision": "04c980a33c9bf909724841408b90dcce08bc4e3f",
+          "version": "4.0.1"
+        }
+      },
+      {
+        "package": "SKWebAPI",
+        "repositoryURL": "https://github.com/SlackKit/SKWebAPI",
+        "state": {
+          "branch": null,
+          "revision": "c1b6169a3f7ca140e37d59dc7b29993221202f3b",
+          "version": "4.0.7"
+        }
+      },
+      {
+        "package": "SSCZLib",
+        "repositoryURL": "https://github.com/daltoniam/zlib-spm.git",
+        "state": {
+          "branch": null,
+          "revision": "83ac8d719a2f3aa775dbdf116a57f56fb2c49abb",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "SSCommonCrypto",
+        "repositoryURL": "https://github.com/daltoniam/common-crypto-spm",
+        "state": {
+          "branch": null,
+          "revision": "2eb3aff0fb57f92f5722fac5d6d20bf64669ca66",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "Starscream",
+        "repositoryURL": "https://github.com/caiofbpa/Starscream",
+        "state": {
+          "branch": "support-cryptor",
+          "revision": "5cdd11fe89cdb253a0e2cdfc8958265c14d7ea02",
+          "version": null
+        }
+      },
+      {
+        "package": "Swifter",
+        "repositoryURL": "https://github.com/httpswift/swifter.git",
+        "state": {
+          "branch": null,
+          "revision": "31ffd9b31f8eaf45d34d7b55a40bba08e3ce1b96",
+          "version": "1.3.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

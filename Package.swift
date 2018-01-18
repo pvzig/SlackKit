@@ -1,14 +1,15 @@
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
     name: "SlackKit",
-    targets: [
-        Target(name: "SlackKit")
-    ],
     dependencies: [
-        .Package(url: "https://github.com/SlackKit/SKCore", majorVersion: 4),
-        .Package(url: "https://github.com/SlackKit/SKClient", majorVersion: 4),
-        .Package(url: "https://github.com/SlackKit/SKRTMAPI", majorVersion: 4),
-        .Package(url: "https://github.com/SlackKit/SKServer", majorVersion: 4)
+        .package(url: "https://github.com/SlackKit/SKCore", .upToNextMajor(from: "4.0.0")),
+        .package(url: "https://github.com/SlackKit/SKClient", .upToNextMajor(from: "4.0.0")),
+        .package(url: "https://github.com/caiofbpa/SKRTMAPI", .branch("use-cross-platform-starscream")),
+        .package(url: "https://github.com/SlackKit/SKServer", .upToNextMajor(from: "4.0.0"))
+    ],
+    targets: [
+        .target(name: "SlackKit", dependencies: ["SKClient", "SKRTMAPI", "SKServer"], path: "Sources")
     ]
 )
