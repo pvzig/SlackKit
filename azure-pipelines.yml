@@ -9,7 +9,7 @@ trigger:
 jobs:
 - job: macOS
   pool:
-    vmImage: 'macOS-10.14'
+    vmImage: 'macOS-10.13'
   steps:
   - task: Xcode@5
     inputs:
@@ -21,7 +21,7 @@ jobs:
       xcodeVersion: '10'
 - job: iOS
   pool:
-    vmImage: 'macOS-10.14'
+    vmImage: 'macOS-10.13'
   steps:
   - task: Xcode@5
     inputs:
@@ -33,7 +33,7 @@ jobs:
       xcodeVersion: '10'
 - job: tvOS
   pool:
-    vmImage: 'macOS-10.14'
+    vmImage: 'macOS-10.13'
   steps:
   - task: Xcode@5
     inputs:
