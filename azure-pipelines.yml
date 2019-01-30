@@ -12,37 +12,37 @@ jobs:
     vmImage: 'macOS-10.14'
   steps:
   - task: Xcode@5
-  inputs:
-    actions: 'build'
-    scheme: 'SlackKit'
-    sdk: 'macosx'
-    configuration: 'Release'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    xcodeVersion: '10'
+    inputs:
+      actions: 'build'
+      scheme: 'SlackKit'
+      sdk: 'macosx'
+      configuration: 'Release'
+      xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
+      xcodeVersion: '10'
 - job: iOS
   pool:
     vmImage: 'macOS-10.14'
   steps:
   - task: Xcode@5
-  inputs:
-    actions: 'build'
-    scheme: 'SlackKit'
-    sdk: 'iphoneos'
-    configuration: 'Release'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    xcodeVersion: '10'
+    inputs:
+      actions: 'build'
+      scheme: 'SlackKit'
+      sdk: 'iphoneos'
+      configuration: 'Release'
+      xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
+      xcodeVersion: '10'
 - job: tvOS
   pool:
     vmImage: 'macOS-10.14'
   steps:
   - task: Xcode@5
-  inputs:
-    actions: 'build'
-    scheme: ''
-    sdk: 'appletvos'
-    configuration: 'Release'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    xcodeVersion: '10'
+    inputs:
+      actions: 'build'
+      scheme: ''
+      sdk: 'appletvos'
+      configuration: 'Release'
+      xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
+      xcodeVersion: '10'
 - job: Linux
   pool:
     vmImage: 'ubuntu-16.04'
