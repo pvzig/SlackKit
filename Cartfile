@@ -1,4 +1,2 @@
-github "SlackKit/SKCore" >= 4.1.0
-github "SlackKit/SKClient" >= 4.1.0
-github "SlackKit/SKRTMAPI" >= 4.1.0
-github "SlackKit/SKServer" >= 4.1.0
+github "daltoniam/Starscream" == 3.0.6
+github "httpswift/swifter" == 1.4.5
