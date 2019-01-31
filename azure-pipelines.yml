@@ -49,7 +49,9 @@ jobs:
   steps:
   - script: |
       # Install Swift dependencies
-      sudo apt-get install clang libicu-dev openssl1.0 libssl1.0-dev
+      sudo apt-get install clang libicu-dev
+      wget https://launchpad.net/~ubuntu-security/+archive/ubuntu/ppa/+build/7531893/+files/openssl_1.0.1-4ubuntu5.31_amd64.deb
+      sudo dpkg -i openssl_1.0.1-4ubuntu5.31_amd64.deb
       # Install Swift 4.2.1
       curl https://swift.org/builds/swift-4.2.1-release/ubuntu1604/swift-4.2.1-RELEASE/swift-4.2.1-RELEASE-ubuntu16.04.tar.gz > $(Build.SourcesDirectory)/swift-4.2.1-RELEASE-ubuntu16.04.tar.gz
       tar xzf swift-4.2.1-RELEASE-ubuntu16.04.tar.gz -C $(Build.SourcesDirectory)
