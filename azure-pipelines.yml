@@ -52,7 +52,7 @@ jobs:
       # Install openssl 1.0.2
       curl https://www.openssl.org/source/openssl-1.0.2q.tar.gz > $(Build.SourcesDirectory)/openssl-1.0.2q.tar.gz
       tar xzf openssl-1.0.2q.tar.gz -C $(Build.SourcesDirectory)
-      cd openssl1.0.2q
+      cd openssl-1.0.2q
       ./config
       sudo make install
       cd ..
