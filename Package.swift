@@ -67,6 +67,6 @@ package.dependencies = [
 #else
 package.dependencies = [
     .package(url: "https://github.com/httpswift/swifter.git", .upToNextMinor(from: "1.4.5")),
-    .package(url: "https://github.com/vapor/http", .upToNextMinor(from: "3.0.6"))
+    .package(url: "https://github.com/vapor/http", .upToNextMinor(from: "2.2.5"))
 ]
 #endif
