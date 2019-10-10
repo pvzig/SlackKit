@@ -49,6 +49,8 @@ jobs:
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11'
       destinationTypeOption: 'simulators'
+      destinationSimulators: 'iPhone X,OS=13.0'
+
 - job: tvOS
   pool:
     vmImage: 'macOS-10.14'
@@ -70,6 +72,7 @@ jobs:
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11'
       destinationTypeOption: 'simulators'
+      destinationSimulators: 'Apple TV 4k,OS=13.0'
 - job: Linux
   pool:
     vmImage: 'ubuntu-16.04'
