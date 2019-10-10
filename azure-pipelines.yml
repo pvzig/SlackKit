@@ -39,7 +39,7 @@ jobs:
       sdk: 'iphoneos'
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: 'default'
+      xcodeVersion: '11'
   - task: Xcode@5
     inputs:
       actions: 'test'
