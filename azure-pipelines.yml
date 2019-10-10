@@ -36,7 +36,7 @@ jobs:
     inputs:
       actions: 'build'
       scheme: 'SlackKit'
-      sdk: 'iphoneos13.1'
+      sdk: 'iphoneos'
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11'
@@ -44,7 +44,7 @@ jobs:
     inputs:
       actions: 'test'
       scheme: 'SlackKitTests'
-      sdk: 'iphonesimulator13.1'
+      sdk: 'iphonesimulator'
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11'
@@ -56,7 +56,7 @@ jobs:
     inputs:
       actions: 'build'
       scheme: 'SlackKit'
-      sdk: 'appletvos13.0'
+      sdk: 'appletvos'
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11'
@@ -64,7 +64,7 @@ jobs:
     inputs:
       actions: 'test'
       scheme: 'SlackKitTests'
-      sdk: 'appletvsimulator13.0'
+      sdk: 'appletvsimulator'
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11'
