@@ -19,7 +19,7 @@ jobs:
       sdk: 'macosx'
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: '11'
+      xcodeVersion: '11.1'
   - task: Xcode@5
     inputs:
       actions: 'test'
@@ -27,7 +27,7 @@ jobs:
       sdk: 'macosx'
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: '11'
+      xcodeVersion: '11.1'
 - job: iOS
   pool:
     vmImage: 'macOS-10.14'
@@ -39,7 +39,7 @@ jobs:
       sdk: 'iphoneos'
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: '11'
+      xcodeVersion: '11.1'
   - task: Xcode@5
     inputs:
       actions: 'test'
@@ -47,7 +47,7 @@ jobs:
       sdk: 'iphonesimulator13.1'
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: '11'
+      xcodeVersion: '11.1'
 - job: tvOS
   pool:
     vmImage: 'macOS-10.14'
@@ -59,7 +59,7 @@ jobs:
       sdk: 'appletvos'
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: '11'
+      xcodeVersion: '11.1'
   - task: Xcode@5
     inputs:
       actions: 'test'
@@ -67,7 +67,7 @@ jobs:
       sdk: 'appletvsimulator13.0'
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: '11'
+      xcodeVersion: '11.1'
 - job: Linux
   pool:
     vmImage: 'ubuntu-16.04'
