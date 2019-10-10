@@ -36,7 +36,7 @@ jobs:
     inputs:
       actions: 'build'
       scheme: 'SlackKit'
-      sdk: 'iphoneos'
+      sdk: 'iphoneos13.1'
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11.1'
@@ -56,7 +56,7 @@ jobs:
     inputs:
       actions: 'build'
       scheme: 'SlackKit'
-      sdk: 'appletvos'
+      sdk: 'appletvos13.0'
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11.1'
