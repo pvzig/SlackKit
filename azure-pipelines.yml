@@ -48,8 +48,10 @@ jobs:
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11'
+      destinationPlatformOption: 'custom'
+      destinationPlatform: 'iOS 13.1'
       destinationTypeOption: 'simulators'
-      destinationSimulators: 'iPhone X,OS=13.0'
+      destinationSimulators: 'iPhone 11 Pro'
 
 - job: tvOS
   pool:
@@ -71,8 +73,6 @@ jobs:
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11'
-      destinationTypeOption: 'simulators'
-      destinationSimulators: 'Apple TV 4k,OS=13.0'
 - job: Linux
   pool:
     vmImage: 'ubuntu-16.04'
