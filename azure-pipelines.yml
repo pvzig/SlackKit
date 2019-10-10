@@ -19,7 +19,7 @@ jobs:
       sdk: 'macosx'
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: 'default'
+      xcodeVersion: '11'
   - task: Xcode@5
     inputs:
       actions: 'test'
@@ -27,7 +27,7 @@ jobs:
       sdk: 'macosx'
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: 'default'
+      xcodeVersion: '11'
 - job: iOS
   pool:
     vmImage: 'macOS-10.14'
@@ -47,7 +47,7 @@ jobs:
       sdk: 'iphonesimulator'
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: 'default'
+      xcodeVersion: '11'
 - job: tvOS
   pool:
     vmImage: 'macOS-10.14'
@@ -59,7 +59,7 @@ jobs:
       sdk: 'appletvos'
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: 'default'
+      xcodeVersion: '11'
   - task: Xcode@5
     inputs:
       actions: 'test'
@@ -67,7 +67,7 @@ jobs:
       sdk: 'appletvsimulator'
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
-      xcodeVersion: 'default'
+      xcodeVersion: '11'
 - job: Linux
   pool:
     vmImage: 'ubuntu-16.04'
@@ -75,10 +75,12 @@ jobs:
   - script: |
       # Install Swift dependencies
       sudo apt-get install clang libicu-dev
-      # Install Swift 4.2.1
-      curl https://swift.org/builds/swift-5.0-release/ubuntu1604/swift-5.0-RELEASE/swift-5.0-RELEASE-ubuntu16.04.tar.gz > $(Build.SourcesDirectory)/swift-5.0-RELEASE-ubuntu16.04.tar.gz
-      tar xzf swift-5.0-RELEASE-ubuntu16.04.tar.gz -C $(Build.SourcesDirectory)
+      # Install Swift 5.1
+      curl https://swift.org/builds/swift-5.1-release/ubuntu1604/swift-5.1-RELEASE/swift-5.1-RELEASE-ubuntu16.04.tar.gz > $(Build.SourcesDirectory)/swift-5.1-RELEASE-ubuntu16.04.tar.gz
+      tar xzf swift-5.1-RELEASE-ubuntu16.04.tar.gz -C $(Build.SourcesDirectory)
       # Swift build
-      $(Build.SourcesDirectory)/swift-5.0-RELEASE-ubuntu16.04/usr/bin/swift build
+      $(Build.SourcesDirectory)/swift-5.1-RELEASE-ubuntu16.04/usr/bin/swift build
       # Swift test
-      $(Build.SourcesDirectory)/swift-5.0-RELEASE-ubuntu16.04/usr/bin/swift test
+      $(Build.SourcesDirectory)/swift-5.1-RELEASE-ubuntu16.04/usr/bin/swift test
+
+
