@@ -44,7 +44,7 @@ jobs:
     inputs:
       actions: 'test'
       scheme: 'SlackKitTests'
-      sdk: 'iphonesimulator'
+      sdk: 'iphonesimulator13.1'
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11'
@@ -64,7 +64,7 @@ jobs:
     inputs:
       actions: 'test'
       scheme: 'SlackKitTests'
-      sdk: 'appletvsimulator'
+      sdk: 'appletvsimulator13.0'
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: '11'
