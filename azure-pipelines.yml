@@ -51,7 +51,7 @@ jobs:
       destinationPlatformOption: 'custom'
       destinationPlatform: 'iOS'
       destinationTypeOption: 'simulators'
-      destinationSimulators: 'iPhone 11 Pro,OS=13.1'
+      destinationSimulators: 'iPhone 11 Pro,OS=13.0'
 
 - job: tvOS
   pool:
