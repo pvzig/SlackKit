@@ -1232,6 +1232,36 @@ extension WebAPI {
             failure?(error)
         }
     }
+    
+    public func conversationsReplies(
+        id: String,
+        ts: String,
+        cursor: String? = nil,
+        inclusive: Bool = false,
+        latest: String = "\(Date().timeIntervalSince1970)",
+        limit: Int = 10,
+        oldest: String = "0",
+        success: ((_ channels: [[String: Any]]?, _ nextCursor: String?) -> Void)?,
+        failure: FailureClosure?
+    ) {
+        var parameters: [String: Any] = [
+            "token": token,
+            "channel": id,
+            "ts": ts,
+            "inclusive": inclusive,
+            "limit": limit,f
+            "latest": latest,
+            "oldest": oldest,
+        ]
+        if let cursor = cursor {
+            parameters["cursor"] = cursor
+        }
+        networkInterface.request(.conversationsReplies, parameters: parameters, successClosure: {(response) in
+            success?(response["messages"] as? [[String: Any]], (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
+        }) {(error) in
+            failure?(error)
+        }
+    }
 }
 
 // MARK: - Utilities
