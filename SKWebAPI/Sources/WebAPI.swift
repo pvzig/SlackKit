@@ -1249,7 +1249,7 @@ extension WebAPI {
             "channel": id,
             "ts": ts,
             "inclusive": inclusive,
-            "limit": limit,f
+            "limit": limit,
             "latest": latest,
             "oldest": oldest,
         ]
