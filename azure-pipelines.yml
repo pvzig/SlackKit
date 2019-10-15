@@ -84,12 +84,12 @@ jobs:
   - script: |
       # Install Swift dependencies
       sudo apt-get install clang libicu-dev
-      # Install Swift 5.1
-      curl https://swift.org/builds/swift-5.1-release/ubuntu1604/swift-5.1-RELEASE/swift-5.1-RELEASE-ubuntu16.04.tar.gz > $(Build.SourcesDirectory)/swift-5.1-RELEASE-ubuntu16.04.tar.gz
-      tar xzf swift-5.1-RELEASE-ubuntu16.04.tar.gz -C $(Build.SourcesDirectory)
+      # Install Swift 5.1.1
+      curl https://swift.org/builds/swift-5.1.1-release/ubuntu1604/swift-5.1.1-RELEASE/swift-5.1.1-RELEASE-ubuntu16.04.tar.gz > $(Build.SourcesDirectory)/swift-5.1.1-RELEASE-ubuntu16.04.tar.gz
+      tar xzf swift-5.1.1-RELEASE-ubuntu16.04.tar.gz -C $(Build.SourcesDirectory)
       # Swift build
-      $(Build.SourcesDirectory)/swift-5.1-RELEASE-ubuntu16.04/usr/bin/swift build
+      $(Build.SourcesDirectory)/swift-5.1.1-RELEASE-ubuntu16.04/usr/bin/swift build
       # Swift test
-      $(Build.SourcesDirectory)/swift-5.1-RELEASE-ubuntu16.04/usr/bin/swift test
+      $(Build.SourcesDirectory)/swift-5.1.1-RELEASE-ubuntu16.04/usr/bin/swift test
 
 
