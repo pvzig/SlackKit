@@ -1264,6 +1264,103 @@ extension WebAPI {
     }
 }
 
+// MARK: - Search
+extension WebAPI {
+    public enum SearchSort: String {
+        case score
+        case timestamp
+    }
+    public enum SearchSortDirection: String {
+        case asc
+        case desc
+    }
+    
+    public func search(
+        query: String,
+        count: Int = 20,
+        highlight: Bool = false,
+        page: Int = 1,
+        sort: SearchSort = .score,
+        sortDir: SearchSortDirection = .desc,
+        success: ((_ files: [[String : Any]]?, _ messages: [[String : Any]]?) -> Void)?,
+        failure: FailureClosure?
+    ) {
+        let parameters: [String: Any] = [
+            "token": token,
+            "query": query,
+            "count": count,
+            "highlight": highlight,
+            "page": page,
+            "sort": sort.rawValue,
+            "sort_dir": sortDir.rawValue,
+        ]
+        networkInterface.request(.searchAll, parameters: parameters, successClosure: { (response) in
+            success?(
+                (response["files"] as? [String : Any])?["matches"] as? [[String : Any]],
+                (response["messages"] as? [String : Any])?["matches"] as? [[String : Any]]
+            )
+        }) { (error) in
+            failure?(error)
+        }
+    }
+    
+    public func searchFiles(
+        query: String,
+        count: Int = 20,
+        highlight: Bool = false,
+        page: Int = 1,
+        sort: SearchSort = .score,
+        sortDir: SearchSortDirection = .desc,
+        success: ((_ files: [[String : Any]]?) -> Void)?,
+        failure: FailureClosure?
+    ) {
+        let parameters: [String: Any] = [
+            "token": token,
+            "query": query,
+            "count": count,
+            "highlight": highlight,
+            "page": page,
+            "sort": sort.rawValue,
+            "sort_dir": sortDir.rawValue,
+        ]
+        networkInterface.request(.searchFiles, parameters: parameters, successClosure: { (response) in
+            success?(
+                (response["files"] as? [String : Any])?["matches"] as? [[String : Any]]
+            )
+        }) { (error) in
+            failure?(error)
+        }
+    }
+    
+    public func searchMessages(
+        query: String,
+        count: Int = 20,
+        highlight: Bool = false,
+        page: Int = 1,
+        sort: SearchSort = .score,
+        sortDir: SearchSortDirection = .desc,
+        success: ((_ messages: [[String : Any]]?) -> Void)?,
+        failure: FailureClosure?
+    ) {
+        let parameters: [String: Any] = [
+            "token": token,
+            "query": query,
+            "count": count,
+            "highlight": highlight,
+            "page": page,
+            "sort": sort.rawValue,
+            "sort_dir": sortDir.rawValue,
+        ]
+        networkInterface.request(.searchMessages, parameters: parameters, successClosure: { (response) in
+            success?(
+                (response["messages"] as? [String : Any])?["matches"] as? [[String : Any]]
+            )
+        }) { (error) in
+            failure?(error)
+        }
+    }
+}
+
 // MARK: - Utilities
 extension WebAPI {
     fileprivate func encodeAttachments(_ attachments: [Attachment?]?) -> String? {

@@ -93,4 +93,7 @@ public enum Endpoint: String {
     case usersProfileSet = "users.profile.set"
     case usersSetActive = "users.setActive"
     case usersSetPresence = "users.setPresence"
+    case searchAll = "search.all"
+    case searchFiles = "search.files"
+    case searchMessages = "search.messages"
 }
