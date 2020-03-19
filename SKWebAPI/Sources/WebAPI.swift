@@ -287,7 +287,7 @@ extension WebAPI {
             "parse": parse?.rawValue,
             "link_names": linkNames,
             "unfurl_links": unfurlLinks,
-            "unfurlMedia": unfurlMedia,
+            "unfurl_media": unfurlMedia,
             "username": username,
             "icon_url": iconURL,
             "icon_emoji": iconEmoji,
@@ -323,12 +323,12 @@ extension WebAPI {
             "channel": channel,
             "thread_ts": thread,
             "text": text,
-            "broadcastReply": broadcastReply,
+            "reply_broadcast": broadcastReply,
             "as_user": asUser,
             "parse": parse?.rawValue,
             "link_names": linkNames,
             "unfurl_links": unfurlLinks,
-            "unfurlMedia": unfurlMedia,
+            "unfurl_media": unfurlMedia,
             "username": username,
             "icon_url": iconURL,
             "icon_emoji": iconEmoji,
@@ -367,7 +367,7 @@ extension WebAPI {
             "parse": parse?.rawValue,
             ]
         networkInterface.request(.chatPostEphemeral, parameters: parameters, successClosure: {(response) in
-            success?((ts: response["sendMessage"] as? String, response["channel"] as? String))
+            success?((ts: response["message_ts"] as? String, response["channel"] as? String))
         }) {(error) in
             failure?(error)
         }
@@ -467,12 +467,12 @@ extension WebAPI {
 
     public func fileInfo(
         fileID: String,
-        commentCount: Int = 100,
-        totalPages: Int = 1,
+        count: Int = 100,
+        page: Int = 1,
         success: FileClosure?,
         failure: FailureClosure?
     ) {
-        let parameters: [String: Any] = ["token": token, "file": fileID, "count": commentCount, "totalPages": totalPages]
+        let parameters: [String: Any] = ["token": token, "file": fileID, "count": count, "page": page]
         networkInterface.request(.filesInfo, parameters: parameters, successClosure: {(response) in
             var file = File(file: response["file"] as? [String: Any])
             (response["comments"] as? [[String: Any]])?.forEach { comment in
