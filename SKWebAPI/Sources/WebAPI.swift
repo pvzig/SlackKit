@@ -33,6 +33,7 @@ public final class WebAPI {
     public typealias FailureClosure = (_ error: SlackError) -> Void
     public typealias CommentClosure = (_ comment: Comment) -> Void
     public typealias ChannelClosure = (_ channel: Channel) -> Void
+    public typealias ChannelsClosure = (_ channels: [Channel], _ nextCursor: String?) -> Void
     public typealias MessageClosure = (_ message: Message) -> Void
     public typealias HistoryClosure = (_ history: History) -> Void
     public typealias FileClosure = (_ file: File) -> Void
@@ -1112,6 +1113,31 @@ extension WebAPI {
 
 // MARK: - Users
 extension WebAPI {
+    public func userConversations(
+        cursor: String? = nil,
+        excludeArchived: Bool? = nil,
+        limit: Int? = nil,
+        types: [ConversationType]? = nil,
+        userID: String? = nil,
+        success: ChannelsClosure?,
+        failure: FailureClosure?
+    ) {
+        let parameters: [String: Any?] = [
+            "token": token,
+            "cursor": cursor,
+            "exclude_archived": excludeArchived,
+            "limit": limit,
+            "types": types?.map({ $0.rawValue }).joined(separator: ","),
+            "user": userID
+        ]
+        networkInterface.request(.usersConversations, parameters: parameters.compactMapValues({$0}), successClosure: {(response) in
+            let channels: [Channel] = (response["channels"] as? [[String: Any]])?.map{Channel(channel: $0)} ?? []
+            success?(channels, (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
+        }) {(error) in
+            failure?(error)
+        }
+    }
+
     public func userPresence(user: String, success: ((_ presence: String?) -> Void)?, failure: FailureClosure?) {
         let parameters: [String: Any] = ["token": token, "user": user]
         networkInterface.request(.usersGetPresence, parameters: parameters, successClosure: {(response) in
