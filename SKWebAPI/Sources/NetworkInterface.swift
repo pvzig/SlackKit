@@ -178,7 +178,7 @@ public struct NetworkInterface {
     private func requestURL(for endpoint: Endpoint, parameters: [String: Any?]) -> URL? {
         var components = URLComponents(string: "\(apiUrl)\(endpoint.rawValue)")
         if parameters.count > 0 {
-            components?.queryItems = filterNilParameters(parameters).map { URLQueryItem(name: $0.0, value: "\($0.1)") }
+            components?.queryItems = parameters.compactMapValues({$0}).map { URLQueryItem(name: $0.0, value: "\($0.1)") }
         }
 
         // As discussed http://www.openradar.me/24076063 and https://stackoverflow.com/a/37314144/407523, Apple considers

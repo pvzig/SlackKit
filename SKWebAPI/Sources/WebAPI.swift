@@ -1130,7 +1130,7 @@ extension WebAPI {
             "types": types?.map({ $0.rawValue }).joined(separator: ","),
             "user": userID
         ]
-        networkInterface.request(.usersConversations, parameters: parameters.compactMapValues({$0}), successClosure: {(response) in
+        networkInterface.request(.usersConversations, parameters: parameters, successClosure: {(response) in
             let channels: [Channel] = (response["channels"] as? [[String: Any]])?.map{Channel(channel: $0)} ?? []
             success?(channels, (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
         }) {(error) in
