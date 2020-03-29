@@ -80,7 +80,7 @@ public enum EventType: String {
     case teamPrefChange = "team_pref_change"
     case teamRename = "team_rename"
     case teamDomainChange = "team_domain_change"
-    case emailDomainChange = "email_domain_change"
+    case emailDomainChanged = "email_domain_changed"
     case teamProfileChange = "team_profile_change"
     case teamProfileDelete = "team_profile_delete"
     case teamProfileReorder = "team_profile_reorder"

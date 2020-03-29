@@ -146,8 +146,8 @@ open class Client {
             teamNameChange(event)
         case .teamDomainChange:
             teamDomainChange(event)
-        case .emailDomainChange:
-            emailDomainChange(event)
+        case .emailDomainChanged:
+            emailDomainChanged(event)
         case .teamProfileChange:
             teamProfileChange(event)
         case .teamProfileDelete:
@@ -757,7 +757,7 @@ extension Client {
         team?.domain = domain
     }
 
-    func emailDomainChange(_ event: Event) {
+    func emailDomainChanged(_ event: Event) {
         guard let domain = event.emailDomain else {
             return
         }
