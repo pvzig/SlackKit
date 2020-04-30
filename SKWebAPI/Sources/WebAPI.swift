@@ -1156,7 +1156,9 @@ extension WebAPI {
         }
     }
 
-    public func usersList(includePresence: Bool = false, success: ((_ userList: [[String: Any]]?) -> Void)?, failure: FailureClosure?) {
+    public func usersList(includePresence: Bool = false,
+                          success: ((_ userList: [[String: Any]]?) -> Void)?,
+                          failure: FailureClosure?) {
         let parameters: [String: Any] = ["token": token, "presence": includePresence]
         networkInterface.request(.usersList, parameters: parameters, successClosure: {(response) in
             success?(response["members"] as? [[String: Any]])
