@@ -1158,7 +1158,7 @@ extension WebAPI {
 
     public func usersList(cursor: String? = nil,
                           includePresence: Bool = false,
-                          success: ((_ userList: [[String: Any]]?) -> Void)?,
+                          success: ((_ userList: [[String: Any]]?, _ nextCursor: String?) -> Void)?,
                           failure: FailureClosure?) {
         var parameters: [String: Any] = ["token": token, "presence": includePresence]
         if let cursor = cursor {
@@ -1166,7 +1166,7 @@ extension WebAPI {
         }
         
         networkInterface.request(.usersList, parameters: parameters, successClosure: {(response) in
-            success?(response["members"] as? [[String: Any]])
+            success?(response["members"] as? [[String: Any]], (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
         }) {(error) in
             failure?(error)
         }
