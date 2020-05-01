@@ -1157,12 +1157,16 @@ extension WebAPI {
     }
 
     public func usersList(cursor: String? = nil,
+                          limit: Int? = nil,
                           includePresence: Bool = false,
                           success: ((_ userList: [[String: Any]]?, _ nextCursor: String?) -> Void)?,
                           failure: FailureClosure?) {
         var parameters: [String: Any] = ["token": token, "presence": includePresence]
         if let cursor = cursor {
             parameters["cursor"] = cursor
+        }
+        if let limit = limit {
+            parameters["limit"] = limit
         }
         
         networkInterface.request(.usersList, parameters: parameters, successClosure: {(response) in
