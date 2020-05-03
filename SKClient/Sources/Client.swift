@@ -27,6 +27,7 @@ import Dispatch
 import Foundation
 #if !COCOAPODS
 @_exported import SKCore
+@_exported import SKRTMAPI
 #endif
 
 open class Client {
@@ -202,6 +203,8 @@ open class Client {
         enumerateObjects(JSON["bots"] as? Array) { (bots) in self.addBot(bots) }
         enumerateSubteams(JSON["subteams"] as? [String: Any])
     }
+
+    open func connectionClosed(error: Error, instance: SKRTMAPI) {	}
 
     private func messageDispatcher(_ event: Event) {
         guard let value = event.subtype, let subtype = MessageSubtype(rawValue:value) else {

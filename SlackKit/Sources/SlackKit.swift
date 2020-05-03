@@ -109,7 +109,12 @@ public final class SlackKit: RTMAdapter {
         executeCallbackForEvent(event, type: type, clientConnection: clientConnection)
     }
 
-    public func connectionClosed(with error: Error, instance: SKRTMAPI) {}
+    public func connectionClosed(with error: Error, instance: SKRTMAPI) {
+        clients[instance.token]?.client?.connectionClosed(error: error, instance: instance)
+        clients[instance.token]?.client = nil
+        clients[instance.token]?.rtm = nil
+        clients[instance.token] = nil
+    }
 
     // MARK: - Callbacks
     public func notificationForEvent(_ type: EventType, event: @escaping EventClosure) {

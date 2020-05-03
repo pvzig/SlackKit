@@ -9,7 +9,7 @@ let SlackKit: Target = .target(name: "SlackKit",
                                path: "SlackKit/Sources")
 
 let SKClient: Target = .target(name: "SKClient",
-                               dependencies: ["SKCore"],
+                               dependencies: ["SKCore", "SKRTMAPI"],
                                path: "SKClient/Sources")
 
 let SKCore: Target   = .target(name: "SKCore",
