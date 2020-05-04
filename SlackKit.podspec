@@ -24,6 +24,7 @@ Pod::Spec.new do |s|
   s.subspec "SKClient" do |ss|
     ss.source_files = "SKClient/Sources/"
     ss.dependency "SlackKit/SKCore"
+    ss.dependency "SlackKit/SKRTMAPI"
   end
 
   s.subspec "SKCore" do |ss|
