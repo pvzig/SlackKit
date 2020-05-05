@@ -495,6 +495,7 @@ extension WebAPI {
         title: String? = nil,
         initialComment: String? = nil,
         channels: [String]? = nil,
+        ts: String? = nil,
         success: FileClosure?,
         failure: FailureClosure?
     ) {
@@ -504,7 +505,8 @@ extension WebAPI {
             "filetype": filetype,
             "title": title,
             "initial_comment": initialComment,
-            "channels": channels?.joined(separator: ",")
+            "channels": channels?.joined(separator: ","),
+            "thread_ts": ts
         ]
         networkInterface.uploadRequest(data: file, parameters: parameters, successClosure: {(response) in
             success?(File(file: response["file"] as? [String: Any]))
