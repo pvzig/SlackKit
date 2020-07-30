@@ -1301,6 +1301,58 @@ extension WebAPI {
             failure?(error)
         }
     }
+
+    public func conversationsMembers(
+        id: String,
+        cursor: String? = nil,
+        limit: Int? = nil,
+        success: ((_ members: [String]?, _ nextCursor: String?) -> Void)?,
+        failure: FailureClosure?
+    ) {
+        var parameters: [String: Any] = [
+            "token": token,
+            "channel": id
+        ]
+        if let cursor = cursor {
+            parameters["cursor"] = cursor
+        }
+        if let limit = limit {
+            parameters["limit"] = limit
+        }
+        networkInterface.request(.conversationsMembers, parameters: parameters, successClosure: {(response) in
+            success?(response["members"] as? [String], (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
+        }) {(error) in
+            failure?(error)
+        }
+    }
+
+    public func conversationsHistory(
+        id: String,
+        cursor: String? = nil,
+        inclusive: Bool = false,
+        latest: String = "\(Date().timeIntervalSince1970)",
+        limit: Int = 10,
+        oldest: String = "0",
+        success: ((_ channels: [[String: Any]]?, _ nextCursor: String?) -> Void)?,
+        failure: FailureClosure?
+    ) {
+        var parameters: [String: Any] = [
+            "token": token,
+            "channel": id,
+            "inclusive": inclusive,
+            "limit": limit,
+            "latest": latest,
+            "oldest": oldest,
+        ]
+        if let cursor = cursor {
+            parameters["cursor"] = cursor
+        }
+        networkInterface.request(.conversationsHistory, parameters: parameters, successClosure: {(response) in
+            success?(response["messages"] as? [[String: Any]], (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
+        }) {(error) in
+            failure?(error)
+        }
+    }
 }
 
 // MARK: - Search
