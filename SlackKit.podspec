@@ -43,7 +43,7 @@ Pod::Spec.new do |s|
     ss.source_files = "SKServer/Sources/**/*.swift"
     ss.dependency "SlackKit/SKCore"
     ss.dependency "SlackKit/SKWebAPI"
-    ss.dependency "Swifter", "1.4.6"
+    ss.dependency "Swifter", "1.5.0"
   end
 
   s.subspec "SKWebAPI" do |ss|
