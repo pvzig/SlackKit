@@ -102,7 +102,7 @@ jobs:
   pool:
     vmImage: 'macOS-10.15'
   steps:
-  - scripts: |
+  - script: |
       swift build --package-path Examples/Leaderboard/
 - job: 'Leaderboard Example (CocoaPods)'
   pool:
