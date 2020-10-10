@@ -107,6 +107,14 @@ jobs:
       brew install pkg-config
       brew install libressl
       swift build --package-path Examples/Leaderboard/
+- job: 'Leaderboard_Example_Carthage'
+  pool:
+    vmImage: 'macOS-10.15'
+  steps:
+  - script: |
+      carthage bootstrap
+    workingDirectory: 'Examples/Leaderboard'
+
 - job: 'Leaderboard_Example_CocoaPods'
   pool:
     vmImage: 'macOS-10.15'
