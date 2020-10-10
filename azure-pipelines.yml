@@ -103,6 +103,8 @@ jobs:
     vmImage: 'macOS-10.15'
   steps:
   - script: |
+      brew update
+      brew install openssl@1.1
       swift build --package-path Examples/Leaderboard/
 - job: 'Leaderboard_Example_CocoaPods'
   pool:
