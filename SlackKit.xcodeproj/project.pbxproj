@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -107,12 +107,6 @@
 		263B10DD21FE548800AF9EF9 /* SKRTMAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263B0FC421FE23C200AF9EF9 /* SKRTMAPI.framework */; };
 		263B10DE21FE548800AF9EF9 /* SKServer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263B0FDE21FE23DB00AF9EF9 /* SKServer.framework */; };
 		263B10DF21FE548800AF9EF9 /* SKWebAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263B0FB721FE23B000AF9EF9 /* SKWebAPI.framework */; };
-		269A176A21FFDF9E00F1F500 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269A176021FFDB4C00F1F500 /* Starscream.framework */; };
-		269A176D21FFDFB200F1F500 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269A176121FFDB4C00F1F500 /* Swifter.framework */; };
-		269A185C220BB32B00F1F500 /* Starscream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 269A175A21FFDB4C00F1F500 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		269A185D220BB32B00F1F500 /* Swifter.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 269A175B21FFDB4C00F1F500 /* Swifter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		26D4E4D32210A31F00A67B67 /* Starscream.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 269A175A21FFDB4C00F1F500 /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		26D4E4D42210A31F00A67B67 /* Swifter.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 269A175B21FFDB4C00F1F500 /* Swifter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		26D4E605221211FD00A67B67 /* SlackKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 26D4E602221211B900A67B67 /* SlackKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		26D4E6062212120100A67B67 /* SKClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 26D4E5FF221211B900A67B67 /* SKClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		26D4E6072212120500A67B67 /* SKCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 26D4E603221211B900A67B67 /* SKCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -130,6 +124,8 @@
 		A20D15EA22DE158000044CFC /* BlockComposition.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20D15E722DE158000044CFC /* BlockComposition.swift */; };
 		A20D15EB22DE158000044CFC /* BlockElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20D15E822DE158000044CFC /* BlockElement.swift */; };
 		A20D15EC22DE158000044CFC /* BlockLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20D15E922DE158000044CFC /* BlockLayout.swift */; };
+		AD39B504252DFF0B000CF632 /* Swifter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD39B503252DFF0A000CF632 /* Swifter.xcframework */; };
+		AD39B508252DFF1A000CF632 /* Starscream.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD39B507252DFF1A000CF632 /* Starscream.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,32 +171,21 @@
 			remoteGlobalIDString = 263B0FB621FE23B000AF9EF9;
 			remoteInfo = SKWebAPI;
 		};
+		ADE710BC252E2642008DD76A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 263B0F8221FE1B2300AF9EF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 263B0FD021FE23CD00AF9EF9;
+			remoteInfo = SlackKit;
+		};
+		ADE710BE252E2648008DD76A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 263B0F8221FE1B2300AF9EF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 263B0FD021FE23CD00AF9EF9;
+			remoteInfo = SlackKit;
+		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		269A185A220BB2B800F1F500 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				269A185C220BB32B00F1F500 /* Starscream.framework in CopyFiles */,
-				269A185D220BB32B00F1F500 /* Swifter.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		26D4E4D22210A31F00A67B67 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				26D4E4D32210A31F00A67B67 /* Starscream.framework in CopyFiles */,
-				26D4E4D42210A31F00A67B67 /* Swifter.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2601B6B72220813600F197AB /* SlackKitTests.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SlackKitTests.xcconfig; sourceTree = "<group>"; };
@@ -299,8 +284,6 @@
 		269A175E21FFDB4C00F1F500 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Swifter.framework; sourceTree = "<group>"; };
 		269A176021FFDB4C00F1F500 /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Starscream.framework; sourceTree = "<group>"; };
 		269A176121FFDB4C00F1F500 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Swifter.framework; sourceTree = "<group>"; };
-		269A177021FFE40700F1F500 /* SKRTMAPI.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SKRTMAPI.xcconfig; sourceTree = "<group>"; };
-		269A177121FFE4E200F1F500 /* SKServer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SKServer.xcconfig; sourceTree = "<group>"; };
 		26D4E4D82210A31F00A67B67 /* Robot or Not Bot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Robot or Not Bot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26D4E5FE221211B900A67B67 /* SKRTMAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKRTMAPI.h; sourceTree = "<group>"; };
 		26D4E5FF221211B900A67B67 /* SKClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKClient.h; sourceTree = "<group>"; };
@@ -333,6 +316,8 @@
 		A20D15E722DE158000044CFC /* BlockComposition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockComposition.swift; sourceTree = "<group>"; };
 		A20D15E822DE158000044CFC /* BlockElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockElement.swift; sourceTree = "<group>"; };
 		A20D15E922DE158000044CFC /* BlockLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockLayout.swift; sourceTree = "<group>"; };
+		AD39B503252DFF0A000CF632 /* Swifter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Swifter.xcframework; sourceTree = "<group>"; };
+		AD39B507252DFF1A000CF632 /* Starscream.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Starscream.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,8 +356,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				263B10D621FE534C00AF9EF9 /* SKCore.framework in Frameworks */,
+				AD39B508252DFF1A000CF632 /* Starscream.xcframework in Frameworks */,
 				263B10D721FE534C00AF9EF9 /* SKWebAPI.framework in Frameworks */,
-				269A176A21FFDF9E00F1F500 /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,9 +377,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD39B504252DFF0B000CF632 /* Swifter.xcframework in Frameworks */,
 				263B10D821FE537800AF9EF9 /* SKCore.framework in Frameworks */,
 				263B10D921FE537800AF9EF9 /* SKWebAPI.framework in Frameworks */,
-				269A176D21FFDFB200F1F500 /* Swifter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +463,6 @@
 			isa = PBXGroup;
 			children = (
 				263B103F21FE33AC00AF9EF9 /* Sources */,
-				269A177021FFE40700F1F500 /* SKRTMAPI.xcconfig */,
 			);
 			path = SKRTMAPI;
 			sourceTree = "<group>";
@@ -495,7 +479,6 @@
 			isa = PBXGroup;
 			children = (
 				263B105121FE33EB00AF9EF9 /* Sources */,
-				269A177121FFE4E200F1F500 /* SKServer.xcconfig */,
 			);
 			path = SKServer;
 			sourceTree = "<group>";
@@ -744,6 +727,8 @@
 		263B10CB21FE4DD900AF9EF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AD39B507252DFF1A000CF632 /* Starscream.xcframework */,
+				AD39B503252DFF0A000CF632 /* Swifter.xcframework */,
 				269A175F21FFDB4C00F1F500 /* iOS */,
 				269A175921FFDB4C00F1F500 /* macOS */,
 				269A175C21FFDB4C00F1F500 /* tvOS */,
@@ -1112,11 +1097,11 @@
 			buildPhases = (
 				263B0FE721FE247300AF9EF9 /* Sources */,
 				263B0FE821FE247300AF9EF9 /* Frameworks */,
-				269A185A220BB2B800F1F500 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				ADE710BD252E2642008DD76A /* PBXTargetDependency */,
 			);
 			name = Leaderboard;
 			productName = Leaderboard;
@@ -1129,11 +1114,11 @@
 			buildPhases = (
 				26D4E4CE2210A31F00A67B67 /* Sources */,
 				26D4E4D12210A31F00A67B67 /* Frameworks */,
-				26D4E4D22210A31F00A67B67 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				ADE710BF252E2648008DD76A /* PBXTargetDependency */,
 			);
 			name = "Robot or Not Bot";
 			productName = Leaderboard;
@@ -1146,8 +1131,8 @@
 		263B0F8221FE1B2300AF9EF9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1130;
+				LastSwiftUpdateCheck = 1170;
+				LastUpgradeCheck = 1170;
 				ORGANIZATIONNAME = "Peter Zignego";
 				TargetAttributes = {
 					2601B6C0222085AB00F197AB = {
@@ -1193,6 +1178,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 263B0F8121FE1B2300AF9EF9;
 			productRefGroup = 263B0F8121FE1B2300AF9EF9;
@@ -1461,6 +1447,16 @@
 			target = 263B0FB621FE23B000AF9EF9 /* SKWebAPI */;
 			targetProxy = 2601B6E02223039200F197AB /* PBXContainerItemProxy */;
 		};
+		ADE710BD252E2642008DD76A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 263B0FD021FE23CD00AF9EF9 /* SlackKit */;
+			targetProxy = ADE710BC252E2642008DD76A /* PBXContainerItemProxy */;
+		};
+		ADE710BF252E2648008DD76A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 263B0FD021FE23CD00AF9EF9 /* SlackKit */;
+			targetProxy = ADE710BE252E2648008DD76A /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1669,7 +1665,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SKCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1701,7 +1697,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SKCore;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1734,7 +1730,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SKClient;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1767,7 +1763,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SKClient;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1800,7 +1796,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SKWebAPI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1833,7 +1829,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SKWebAPI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1849,7 +1845,6 @@
 		};
 		263B0FCA21FE23C200AF9EF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 269A177021FFE40700F1F500 /* SKRTMAPI.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1867,7 +1862,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SKRTMAPI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1883,7 +1878,6 @@
 		};
 		263B0FCB21FE23C200AF9EF9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 269A177021FFE40700F1F500 /* SKRTMAPI.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -1901,7 +1895,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SKRTMAPI;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1934,7 +1928,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SlackKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1968,7 +1962,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SlackKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1984,7 +1978,6 @@
 		};
 		263B0FE421FE23DB00AF9EF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 269A177121FFE4E200F1F500 /* SKServer.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -2002,7 +1995,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SKServer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2018,7 +2011,6 @@
 		};
 		263B0FE521FE23DB00AF9EF9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 269A177121FFE4E200F1F500 /* SKServer.xcconfig */;
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -2036,7 +2028,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.5.1;
+				MARKETING_VERSION = 4.6.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.launchsoft.SKServer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

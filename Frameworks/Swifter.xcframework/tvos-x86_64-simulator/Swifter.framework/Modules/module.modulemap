@@ -1,0 +1,4 @@
+framework module Swifter {
+  header "Swifter-Swift.h"
+  requires objc
+}

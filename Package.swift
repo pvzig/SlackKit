@@ -69,19 +69,19 @@ let package = Package(
 
 #if os(macOS)
 package.dependencies = [
-    .package(url: "https://github.com/httpswift/swifter.git", .upToNextMinor(from: "1.4.6")),
+    .package(url: "https://github.com/httpswift/swifter.git", .upToNextMinor(from: "1.5.0")),
     .package(url: "https://github.com/vapor/websocket", .upToNextMinor(from: "1.1.2")),
-    .package(url: "https://github.com/daltoniam/Starscream", .upToNextMinor(from: "3.1.0"))
+    .package(url: "https://github.com/daltoniam/Starscream", .upToNextMinor(from: "4.0.4"))
 ]
 #elseif os(Linux)
 package.dependencies = [
-    .package(url: "https://github.com/httpswift/swifter.git", .upToNextMinor(from: "1.4.6")),
+    .package(url: "https://github.com/httpswift/swifter.git", .upToNextMinor(from: "1.5.0")),
     .package(url: "https://github.com/vapor/websocket", .upToNextMinor(from: "1.1.2"))
 ]
 #elseif os(iOS) || os(tvOS)
 package.dependencies = [
-    .package(url: "https://github.com/httpswift/swifter.git", .upToNextMinor(from: "1.4.6")),
-    .package(url: "https://github.com/daltoniam/Starscream", .upToNextMinor(from: "3.1.0"))
+    .package(url: "https://github.com/httpswift/swifter.git", .upToNextMinor(from: "1.5.0")),
+    .package(url: "https://github.com/daltoniam/Starscream", .upToNextMinor(from: "4.0.4"))
 ]
 #endif
 
