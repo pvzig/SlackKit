@@ -104,7 +104,8 @@ jobs:
   steps:
   - script: |
       brew update
-      brew install openssl@1.1
+      brew install pkg-config
+      brew install libressl
       swift build --package-path Examples/Leaderboard/
 - job: 'Leaderboard_Example_CocoaPods'
   pool:
