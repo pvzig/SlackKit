@@ -98,13 +98,13 @@ jobs:
       # Swift test
       $(Build.SourcesDirectory)/swift-5.2.4-RELEASE-ubuntu16.04/usr/bin/swift test
 # Examples
-- job: 'Leaderboard Example (Swift Package Manager)'
+- job: 'Leaderboard_Example_SPM'
   pool:
     vmImage: 'macOS-10.15'
   steps:
   - script: |
       swift build --package-path Examples/Leaderboard/
-- job: 'Leaderboard Example (CocoaPods)'
+- job: 'Leaderboard_Example_CocoaPods'
   pool:
     vmImage: 'macOS-10.15'
   steps:
