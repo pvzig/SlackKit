@@ -18,7 +18,7 @@ let package = Package(
             targets: ["SampleApp"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pvzig/SlackKit.git", .upToNextMinor(from: "4.3.0")),
+        .package(url: "https://github.com/pvzig/SlackKit.git", .upToNextMinor(from: "4.6.0")),
     ],
     targets: [
         .target(
