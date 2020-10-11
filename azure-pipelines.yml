@@ -128,7 +128,7 @@ jobs:
       scheme: 'Leaderboard'
       sdk: 'iphoneos'
       configuration: 'Release'
-      xcWorkspacePath: 'Examples/Leaderboard.xcworkspace'
+      xcWorkspacePath: 'Examples/Leaderboard/Leaderboard.xcworkspace'
       xcodeVersion: specifyPath
       xcodeDeveloperDir: '/Applications/Xcode_11.7.app/Contents/Developer'
 
