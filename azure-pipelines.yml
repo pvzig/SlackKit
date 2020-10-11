@@ -98,7 +98,7 @@ jobs:
       # Swift test
       $(Build.SourcesDirectory)/swift-5.2.4-RELEASE-ubuntu16.04/usr/bin/swift test
 # Examples
-- job: 'Leaderboard_Example_SPM'
+- job: 'Swift_Package_Manager'
   pool:
     vmImage: 'macOS-10.15'
   steps:
@@ -107,7 +107,7 @@ jobs:
       brew install pkg-config
       brew install libressl
       swift build --package-path Examples/Leaderboard/
-- job: 'Leaderboard_Example_Carthage'
+- job: 'Carthage'
   pool:
     vmImage: 'macOS-10.15'
   steps:
@@ -115,7 +115,7 @@ jobs:
       carthage bootstrap
     workingDirectory: 'Examples/Leaderboard'
 
-- job: 'Leaderboard_Example_CocoaPods'
+- job: 'CocoaPods'
   pool:
     vmImage: 'macOS-10.15'
   steps:
