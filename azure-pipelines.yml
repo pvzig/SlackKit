@@ -126,7 +126,7 @@ jobs:
     inputs:
       actions: 'build'
       scheme: 'Leaderboard'
-      sdk: 'iphoneos'
+      sdk: 'macosx'
       configuration: 'Release'
       xcWorkspacePath: 'Examples/Leaderboard/Leaderboard.xcworkspace'
       xcodeVersion: specifyPath
