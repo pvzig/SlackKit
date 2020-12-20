@@ -196,7 +196,7 @@ final class SKCoreTests: XCTestCase {
   }
 
   func testAttachmentCodable() {
-    let data = JSONData.action
+    let data = JSONData.attachment
     let decoder = JSONDecoder()
     let attachmentByDecoder = try? decoder.decode(Attachment.self, from: data)
     XCTAssertNotNil(attachmentByDecoder)
