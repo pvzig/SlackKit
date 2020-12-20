@@ -65,25 +65,25 @@ public struct Attachment {
     public let markdownEnabledFields: Set<AttachmentTextField>?
 
     public init(attachment: [String: Any]?) {
-        fallback = attachment?["fallback"] as? String
-        callbackID = attachment?["callback_id"] as? String
-        type = attachment?["attachment_type"] as? String
-        color = attachment?["color"] as? String
-        pretext = attachment?["pretext"] as? String
-        authorName = attachment?["author_name"] as? String
-        authorLink = attachment?["author_link"] as? String
-        authorIcon = attachment?["author_icon"] as? String
-        title = attachment?["title"] as? String
-        titleLink = attachment?["title_link"] as? String
-        text = attachment?["text"] as? String
-        fields = (attachment?["fields"] as? [[String: Any]])?.map { AttachmentField(field: $0) }
-        actions = (attachment?["actions"] as? [[String: Any]])?.map { Action(action: $0) }
-        imageURL = attachment?["image_url"] as? String
-        thumbURL = attachment?["thumb_url"] as? String
-        footer = attachment?["footer"] as? String
-        footerIcon = attachment?["footer_icon"] as? String
-        ts = attachment?["ts"] as? Int
-        markdownEnabledFields = (attachment?["mrkdwn_in"] as? [String]).map { Set($0.compactMap(AttachmentTextField.init)) }
+        fallback = attachment?[CodingKeys.fallback] as? String
+        callbackID = attachment?[CodingKeys.callbackID] as? String
+        type = attachment?[CodingKeys.type] as? String
+        color = attachment?[CodingKeys.color] as? String
+        pretext = attachment?[CodingKeys.pretext] as? String
+        authorName = attachment?[CodingKeys.authorName] as? String
+        authorLink = attachment?[CodingKeys.authorLink] as? String
+        authorIcon = attachment?[CodingKeys.authorIcon] as? String
+        title = attachment?[CodingKeys.title] as? String
+        titleLink = attachment?[CodingKeys.titleLink] as? String
+        text = attachment?[CodingKeys.text] as? String
+        fields = (attachment?[CodingKeys.fields] as? [[String: Any]])?.map { AttachmentField(field: $0) }
+        actions = (attachment?[CodingKeys.actions] as? [[String: Any]])?.map { Action(action: $0) }
+        imageURL = attachment?[CodingKeys.imageURL] as? String
+        thumbURL = attachment?[CodingKeys.thumbURL] as? String
+        footer = attachment?[CodingKeys.footer] as? String
+        footerIcon = attachment?[CodingKeys.footerIcon] as? String
+        ts = attachment?[CodingKeys.ts] as? Int
+        markdownEnabledFields = (attachment?[CodingKeys.markdownEnabledFields] as? [String]).map { Set($0.compactMap(AttachmentTextField.init)) }
     }
 
     public init(
