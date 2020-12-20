@@ -70,3 +70,5 @@ extension AttachmentField: Codable {
 }
 
 extension AttachmentField.CodingKeys: CodingKey { }
+
+extension AttachmentField: Equatable { }
