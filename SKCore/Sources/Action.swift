@@ -220,6 +220,10 @@ extension Action.Option: Codable {
 
 extension Action.Option.CodingKeys: CodingKey { }
 
+extension Action: Equatable { }
+extension Action.Confirm: Equatable { }
+extension Action.Option: Equatable { }
+
 public enum ActionStyle: String, Codable {
     case defaultStyle = "default"
     case primary = "primary"
