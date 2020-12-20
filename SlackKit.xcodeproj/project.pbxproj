@@ -126,6 +126,7 @@
 		A20D15EC22DE158000044CFC /* BlockLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20D15E922DE158000044CFC /* BlockLayout.swift */; };
 		AD39B504252DFF0B000CF632 /* Swifter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD39B503252DFF0A000CF632 /* Swifter.xcframework */; };
 		AD39B508252DFF1A000CF632 /* Starscream.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD39B507252DFF1A000CF632 /* Starscream.xcframework */; };
+		DBA0851E258F83DB000F4381 /* attachment.json in Resources */ = {isa = PBXBuildFile; fileRef = DBA0851D258F83DB000F4381 /* attachment.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -318,6 +319,7 @@
 		A20D15E922DE158000044CFC /* BlockLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockLayout.swift; sourceTree = "<group>"; };
 		AD39B503252DFF0A000CF632 /* Swifter.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Swifter.xcframework; sourceTree = "<group>"; };
 		AD39B507252DFF1A000CF632 /* Starscream.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = Starscream.xcframework; sourceTree = "<group>"; };
+		DBA0851D258F83DB000F4381 /* attachment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = attachment.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -829,6 +831,7 @@
 			isa = PBXGroup;
 			children = (
 				9EA45FB822C01290006A6D36 /* action.json */,
+				DBA0851D258F83DB000F4381 /* attachment.json */,
 				9EEC459722BE789600206AC3 /* attachmentfield.json */,
 				26D4E6282220731800A67B67 /* channel.json */,
 				26D4E6222220731700A67B67 /* conversation.json */,
@@ -1203,6 +1206,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA0851E258F83DB000F4381 /* attachment.json in Resources */,
 				2601B6CD2223038A00F197AB /* channel.json in Resources */,
 				9EA45FB922C01290006A6D36 /* action.json in Resources */,
 				2601B710222F766D00F197AB /* member_left_channel.json in Resources */,
