@@ -19,12 +19,12 @@
         {
             "title": "any title",
             "value": "any value",
-            "short": "any short"
+            "short": true
         },
         {
             "title": "another title",
             "value": "another value",
-            "short": "another short"
+            "short": false
         }
     ],
     "actions": [
