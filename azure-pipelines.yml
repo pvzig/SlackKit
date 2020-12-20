@@ -10,7 +10,7 @@ jobs:
 # Builds
 - job: macOS
   pool:
-    vmImage: 'macOS-10.14'
+    vmImage: 'macOS-10.15'
   steps:
   - task: Xcode@5
     inputs:
@@ -20,7 +20,7 @@ jobs:
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_11.3.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_11.7.app/Contents/Developer'
   - task: Xcode@5
     inputs:
       actions: 'test'
@@ -29,10 +29,10 @@ jobs:
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_11.3.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_11.7.app/Contents/Developer'
 - job: iOS
   pool:
-    vmImage: 'macOS-10.14'
+    vmImage: 'macOS-10.15'
   steps:
   - task: Xcode@5
     inputs:
@@ -42,7 +42,7 @@ jobs:
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_11.3.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_11.7.app/Contents/Developer'
   - task: Xcode@5
     inputs:
       actions: 'test'
@@ -51,15 +51,15 @@ jobs:
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_11.3.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_11.7.app/Contents/Developer'
       destinationPlatformOption: 'custom'
       destinationPlatform: 'iOS'
       destinationTypeOption: 'simulators'
-      destinationSimulators: 'iPhone 11 Pro,OS=13.3'
+      destinationSimulators: 'iPhone 11 Pro,OS=13.7'
 
 - job: tvOS
   pool:
-    vmImage: 'macOS-10.14'
+    vmImage: 'macOS-10.15'
   steps:
   - task: Xcode@5
     inputs:
@@ -69,7 +69,7 @@ jobs:
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_11.3.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_11.7.app/Contents/Developer'
   - task: Xcode@5
     inputs:
       actions: 'test'
@@ -78,11 +78,11 @@ jobs:
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_11.3.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_11.7.app/Contents/Developer'
       destinationPlatformOption: 'custom'
       destinationPlatform: 'tvOS'
       destinationTypeOption: 'simulators'
-      destinationSimulators: 'Apple TV 4K,OS=13.3'
+      destinationSimulators: 'Apple TV 4K,OS=13.4'
 - job: Linux
   pool:
     vmImage: 'ubuntu-16.04'
@@ -90,12 +90,46 @@ jobs:
   - script: |
       # Install Swift dependencies
       sudo apt-get install clang libicu-dev
-      # Install Swift 5.1.3
-      curl https://swift.org/builds/swift-5.1.3-release/ubuntu1604/swift-5.1.3-RELEASE/swift-5.1.3-RELEASE-ubuntu16.04.tar.gz > $(Build.SourcesDirectory)/swift-5.1.3-RELEASE-ubuntu16.04.tar.gz
-      tar xzf swift-5.1.3-RELEASE-ubuntu16.04.tar.gz -C $(Build.SourcesDirectory)
+      # Install Swift 5.2.4
+      curl https://swift.org/builds/swift-5.2.4-release/ubuntu1604/swift-5.2.4-RELEASE/swift-5.2.4-RELEASE-ubuntu16.04.tar.gz > $(Build.SourcesDirectory)/swift-5.2.4-RELEASE-ubuntu16.04.tar.gz
+      tar xzf swift-5.2.4-RELEASE-ubuntu16.04.tar.gz -C $(Build.SourcesDirectory)
       # Swift build
-      $(Build.SourcesDirectory)/swift-5.1.3-RELEASE-ubuntu16.04/usr/bin/swift build
+      $(Build.SourcesDirectory)/swift-5.2.4-RELEASE-ubuntu16.04/usr/bin/swift build
       # Swift test
-      $(Build.SourcesDirectory)/swift-5.1.3-RELEASE-ubuntu16.04/usr/bin/swift test
+      $(Build.SourcesDirectory)/swift-5.2.4-RELEASE-ubuntu16.04/usr/bin/swift test
+# Examples
+- job: 'Swift_Package_Manager'
+  pool:
+    vmImage: 'macOS-10.15'
+  steps:
+  - script: |
+      brew update
+      brew install pkg-config
+      brew install libressl
+      swift build --package-path Examples/Leaderboard/
+- job: 'Carthage'
+  pool:
+    vmImage: 'macOS-10.15'
+  steps:
+  - script: |
+      carthage bootstrap
+    workingDirectory: 'Examples/Leaderboard'
+
+- job: 'CocoaPods'
+  pool:
+    vmImage: 'macOS-10.15'
+  steps:
+  - task: CocoaPods@0
+    inputs:
+      projectDirectory: 'Examples/Leaderboard'
+  - task: Xcode@5
+    inputs:
+      actions: 'build'
+      scheme: 'Leaderboard'
+      sdk: 'macosx'
+      configuration: 'Release'
+      xcWorkspacePath: 'Examples/Leaderboard/Leaderboard.xcworkspace'
+      xcodeVersion: specifyPath
+      xcodeDeveloperDir: '/Applications/Xcode_11.7.app/Contents/Developer'
 
 

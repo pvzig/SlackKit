@@ -160,7 +160,7 @@ public final class SKRTMAPI: RTMDelegate {
             "broadcastReply": broadcastReply
         ]
         guard
-            let data = try? JSONSerialization.data(withJSONObject: filterNilParameters(json), options: []),
+            let data = try? JSONSerialization.data(withJSONObject: json.compactMapValues({$0}), options: []),
             let str = String(data: data, encoding: String.Encoding.utf8)
         else {
             throw SlackError.clientJSONError

@@ -8,7 +8,7 @@ let package = Package(
         .executable(name: "Robot or Not Bot", targets: ["Robot or Not Bot"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/pvzig/SlackKit", .upToNextMinor(from: "4.3.0"))
+        .package(url: "https://github.com/pvzig/SlackKit", .upToNextMinor(from: "4.6.0"))
     ],
     targets: [
         .target(name: "Robot or Not Bot",

@@ -1,7 +1,6 @@
 platform :osx, '10.11'
 
 target 'Robot Or Not Bot' do
-  use_frameworks!
-  pod 'SlackKit', '>= 4.3.0'
+  pod 'SlackKit', '>= 4.6.0'
 end
   

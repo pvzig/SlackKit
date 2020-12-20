@@ -29,7 +29,6 @@ import SKCore
 import Starscream
 
 public class StarscreamRTM: RTMWebSocket, WebSocketDelegate {
-
     public weak var delegate: RTMDelegate?
     private var webSocket: WebSocket?
 
@@ -37,7 +36,7 @@ public class StarscreamRTM: RTMWebSocket, WebSocketDelegate {
 
     // MARK: - RTM
     public func connect(url: URL) {
-        self.webSocket = WebSocket(url: url)
+        self.webSocket = WebSocket(request: URLRequest(url: url))
         self.webSocket?.delegate = self
         self.webSocket?.connect()
     }
@@ -58,24 +57,34 @@ public class StarscreamRTM: RTMWebSocket, WebSocketDelegate {
     }
 
     // MARK: - WebSocketDelegate
-    public func websocketDidConnect(socket: WebSocketClient) {
-        delegate?.didConnect()
+    
+    public func didReceive(event: WebSocketEvent, client: WebSocket) {
+        switch event {
+        case .connected:
+            delegate?.didConnect()
+        case .disconnected:
+            webSocket = nil
+            delegate?.disconnected()
+        case .text(let text):
+            delegate?.receivedMessage(text)
+        case .binary:
+            break // unhandled
+        case .pong:
+            break // unhandled
+        case .ping:
+            break // unhandled
+        case .error:
+            break // unhandled
+        case .viabilityChanged:
+            break // unhandled
+        case .reconnectSuggested:
+            break // unhandled
+        case .cancelled:
+            break // unhandled
+        @unknown default:
+            break // unhandled
+        }
     }
-
-    public func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        webSocket = nil
-        delegate?.disconnected()
-    }
-
-    public func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        delegate?.receivedMessage(text)
-    }
-
-    public func websocketDidConnect(socket: WebSocket) {
-        delegate?.didConnect()
-    }
-
-    public func websocketDidReceiveData(socket: WebSocketClient, data: Data) {}
 }
 
 #endif
