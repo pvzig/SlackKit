@@ -1,0 +1,85 @@
+{
+    "fallback": "any fallback",
+    "callback_id": "any callback_id",
+    "attachment_type": "any attachment_type",
+    "color": "any color",
+    "pretext": "any pretext",
+    "author_name": "any author_name",
+    "author_link": "any author_link",
+    "author_icon": "any author_icon",
+    "title": "any title",
+    "title_link": "any title_link",
+    "text": "any text",
+    "image_url": "any image_url",
+    "thumb_url": "any thumb_url",
+    "footer": "any footer",
+    "footer_icon": "any footer_icon",
+    "ts": 100,
+    "fields": [
+        {
+            "title": "any title",
+            "value": "any value",
+            "short": "any short"
+        },
+        {
+            "title": "another title",
+            "value": "another value",
+            "short": "another short"
+        }
+    ],
+    "actions": [
+        {
+            "name": "any name",
+            "text": "any text",
+            "type": "any type",
+            "value": "any value",
+            "url": "any url",
+            "style": "primary",
+            "confirm":
+            {
+                "title": "any title",
+                "text": "any text",
+                "ok_text": "any ok text",
+                "dismiss_text": "any dismiss text"
+            },
+            "options":
+            [
+                {
+                    "text": "any text 1",
+                    "value": "any value 1"
+                },
+                {
+                    "text": "any text 2",
+                    "value": "any value 2"
+                }
+            ],
+            "data_source": "channels"
+        },
+        {
+            "name": "another name",
+            "text": "another text",
+            "type": "another type",
+            "value": "another value",
+            "url": "another url",
+            "style": "default",
+            "confirm":
+            {
+                "title": "another title",
+                "text": "another text",
+                "ok_text": "another ok text",
+                "dismiss_text": "another dismiss text"
+            },
+            "options":
+            [
+                {
+                    "text": "another text 1",
+                    "value": "another value 1"
+                }
+            ],
+            "data_source": "channels"
+        }
+    ],
+    "mrkdwn_in": [
+        "fallback", "fields", "title", "fallback", "fields"
+    ]
+}
