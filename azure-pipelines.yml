@@ -55,7 +55,7 @@ jobs:
       destinationPlatformOption: 'custom'
       destinationPlatform: 'iOS'
       destinationTypeOption: 'simulators'
-      destinationSimulators: 'iPhone 12 Pro,OS=14.0'
+      destinationSimulators: 'iPhone 12 Pro,OS=14.4'
 
 - job: tvOS
   pool:
@@ -82,7 +82,7 @@ jobs:
       destinationPlatformOption: 'custom'
       destinationPlatform: 'tvOS'
       destinationTypeOption: 'simulators'
-      destinationSimulators: 'Apple TV 4K,OS=14.0'
+      destinationSimulators: 'Apple TV 4K,OS=14.3'
 - job: Linux
   pool:
     vmImage: 'ubuntu-16.04'
