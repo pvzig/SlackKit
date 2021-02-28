@@ -112,7 +112,7 @@ jobs:
     vmImage: 'macOS-10.15'
   steps:
   - script: |
-      carthage bootstrap
+      carthage bootstrap --use-xcframeworks
     workingDirectory: 'Examples/Leaderboard'
 
 - job: 'CocoaPods'
