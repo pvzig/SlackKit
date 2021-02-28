@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "SlackKit",
     platforms: [
-        .macOS(.v10_11), .iOS(.v10), .tvOS(.v10)
+        .macOS(.v10_10), .iOS(.v10), .tvOS(.v10)
     ],
     products: [
         .library(name: "SlackKit", targets: ["SlackKit"]),
