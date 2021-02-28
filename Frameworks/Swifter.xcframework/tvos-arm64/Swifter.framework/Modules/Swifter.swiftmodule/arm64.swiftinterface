@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-compiler-version: Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
 // swift-module-flags: -target arm64-apple-tvos9.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Swifter
 import Dispatch
 import Foundation
@@ -392,7 +392,7 @@ public class WebSocketSession : Swift.Hashable, Swift.Equatable {
 public func == (webSocketSession1: Swifter.WebSocketSession, webSocketSession2: Swifter.WebSocketSession) -> Swift.Bool
 @_inheritsConvenienceInitializers open class HttpServer : Swifter.HttpServerIO {
   public static let VERSION: Swift.String
-  override public init()
+  public init()
   public var DELETE: Swifter.HttpServer.MethodRoute, PATCH: Swifter.HttpServer.MethodRoute, HEAD: Swifter.HttpServer.MethodRoute, POST: Swifter.HttpServer.MethodRoute, GET: Swifter.HttpServer.MethodRoute, PUT: Swifter.HttpServer.MethodRoute
   public var delete: Swifter.HttpServer.MethodRoute, patch: Swifter.HttpServer.MethodRoute, head: Swifter.HttpServer.MethodRoute, post: Swifter.HttpServer.MethodRoute, get: Swifter.HttpServer.MethodRoute, put: Swifter.HttpServer.MethodRoute
   public subscript(path: Swift.String) -> ((Swifter.HttpRequest) -> Swifter.HttpResponse)? {
@@ -482,7 +482,7 @@ public func == (socket1: Swifter.Socket, socket2: Swifter.Socket) -> Swift.Bool
 public protocol HttpServerIODelegate : AnyObject {
   func socketConnectionReceived(_ socket: Swifter.Socket)
 }
-open class HttpServerIO {
+@_hasMissingDesignatedInitializers open class HttpServerIO {
   weak public var delegate: Swifter.HttpServerIODelegate?
   public enum HttpServerIOState : Swift.Int32 {
     case starting
@@ -505,7 +505,6 @@ open class HttpServerIO {
   public var listenAddressIPv6: Swift.String?
   public func port() throws -> Swift.Int
   public func isIPv4() throws -> Swift.Bool
-  public init()
   @objc deinit
   @available(OSX 10.10, *)
   public func start(_ port: Darwin.in_port_t = 8080, forceIPv4: Swift.Bool = false, priority: Dispatch.DispatchQoS.QoSClass = DispatchQoS.QoSClass.background) throws
