@@ -111,8 +111,7 @@ jobs:
   pool:
     vmImage: 'macOS-10.15'
   steps:
-  - script: |
-      carthage bootstrap --use-xcframeworks
+  - script: carthage bootstrap --use-xcframeworks --platform macos
     workingDirectory: 'Examples/Leaderboard'
 
 - job: 'CocoaPods'

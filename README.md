@@ -44,6 +44,8 @@ Add `SlackKit` to your `Cartfile`:
 github "pvzig/SlackKit"
 ```
 
+**SlackKit is now using .xcframeworks. When building your dependencies with carthage, please specify a platform: `carthage bootstrap --use-xcframeworks --platform macos`**
+
 #### CocoaPods
 Add `SlackKit` to your `Podfile`:
 
