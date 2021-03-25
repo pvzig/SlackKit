@@ -48,6 +48,7 @@ public enum Endpoint: String {
     case conversationsReplies = "conversations.replies"
     case conversationsMembers = "conversations.members"
     case conversationsHistory = "conversations.history"
+    case conversationsOpen = "conversations.open"
     case dndInfo = "dnd.info"
     case dndTeamInfo = "dnd.teamInfo"
     case emojiList = "emoji.list"

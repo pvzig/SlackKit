@@ -682,16 +682,6 @@ extension WebAPI {
             failure?(error)
         }
     }
-
-    public func openIM(userID: String, success: ((_ imID: String?) -> Void)?, failure: FailureClosure?) {
-        let parameters = ["user": userID]
-        networkInterface.request(.imOpen, accessToken: token, parameters: parameters, successClosure: {(response) in
-            let group = response["channel"] as? [String: Any]
-            success?(group?["id"] as? String)
-        }) {(error) in
-            failure?(error)
-        }
-    }
 }
 
 // MARK: - MPIM
@@ -1327,6 +1317,16 @@ extension WebAPI {
             failure?(error)
         }
     }
+
+    public func openConversations(userIDs: [String], success: ((_ imID: String?) -> Void)?, failure: FailureClosure?) {
+        let parameters = ["users": userIDs.joined(separator: ",")]
+        networkInterface.request(.conversationsOpen, accessToken: token, parameters: parameters, successClosure: {(response) in
+            let group = response["channel"] as? [String: Any]
+            success?(group?["id"] as? String)
+        }) {(error) in
+            failure?(error)
+        }
+    }
 }
 
 // MARK: - Search
@@ -1673,6 +1673,20 @@ extension WebAPI {
         let parameters: [String: Any] = ["channel": channel, "user": user]
         networkInterface.request(endpoint, accessToken: token, parameters: parameters,successClosure: { _ in
             success?(true)
+        }) {(error) in
+            failure?(error)
+        }
+    }
+}
+
+// MARK: - Deprecated
+extension WebAPI {
+    @available(*, deprecated, message: "Use openConversation instead.")
+    public func openIM(userID: String, success: ((_ imID: String?) -> Void)?, failure: FailureClosure?) {
+        let parameters = ["user": userID]
+        networkInterface.request(.imOpen, accessToken: token, parameters: parameters, successClosure: {(response) in
+            let group = response["channel"] as? [String: Any]
+            success?(group?["id"] as? String)
         }) {(error) in
             failure?(error)
         }
