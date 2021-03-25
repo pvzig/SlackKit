@@ -48,6 +48,7 @@ public enum Endpoint: String {
     case conversationsReplies = "conversations.replies"
     case conversationsMembers = "conversations.members"
     case conversationsHistory = "conversations.history"
+    case conversationsOpen = "conversations.open"
     case dndInfo = "dnd.info"
     case dndTeamInfo = "dnd.teamInfo"
     case emojiList = "emoji.list"
@@ -69,7 +70,6 @@ public enum Endpoint: String {
     case imHistory = "im.history"
     case imList = "im.list"
     case imMark = "im.mark"
-    case imOpen = "im.open"
     case mpimClose = "mpim.close"
     case mpimHistory = "mpim.history"
     case mpimList = "mpim.list"
@@ -99,4 +99,7 @@ public enum Endpoint: String {
     case searchAll = "search.all"
     case searchFiles = "search.files"
     case searchMessages = "search.messages"
+
+    // MARK: - Deprecated endpoints
+    case imOpen = "im.open"
 }
