@@ -21,6 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if canImport(HTTP)
 #if os(Linux) || os(macOS) && !COCOAPODS
 import Foundation
 import HTTP
@@ -42,7 +43,7 @@ public class VaporEngineRTM: RTMWebSocket {
         guard let host = url.host else {
             fatalError("ERROR - Cannot extract host from '\(url.absoluteString)'")
         }
-        
+
         let scheme: HTTPScheme = url.scheme == "wss" ? .wss : .ws
         futureWebsocket = HTTPClient.webSocket(
             scheme: scheme,
@@ -82,4 +83,5 @@ public class VaporEngineRTM: RTMWebSocket {
         websocket.send(message)
     }
 }
+#endif
 #endif
