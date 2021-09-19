@@ -57,10 +57,7 @@ public struct NetworkInterface {
             return
         }
 
-        var adjustedParamters = parameters
-        adjustedParamters.removeValue(forKey: "token")
-
-        guard let url = requestURL(for: endpoint, parameters: adjustedParamters) else {
+        guard let url = requestURL(for: endpoint, parameters: parameters) else {
             errorClosure(SlackError.clientNetworkError)
             return
         }
