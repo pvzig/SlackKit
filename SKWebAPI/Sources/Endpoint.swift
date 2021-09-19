@@ -75,7 +75,7 @@ public enum Endpoint: String {
     case mpimList = "mpim.list"
     case mpimMark = "mpim.mark"
     case mpimOpen = "mpim.open"
-    case oauthAccess = "oauth.access"
+    case oauthAccess = "oauth.v2.access"
     case pinsList = "pins.list"
     case pinsAdd = "pins.add"
     case pinsRemove = "pins.remove"

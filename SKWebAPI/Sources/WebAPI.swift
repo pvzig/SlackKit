@@ -84,7 +84,6 @@ extension WebAPI {
     ) {
         let parameters: [String: Any?] =
             [
-                "token": token,
                 "batch_presence_aware": batchPresenceAware,
                 "mpim_aware": mpimAware,
                 "no_latest": noLatest,
@@ -92,7 +91,7 @@ extension WebAPI {
                 "presence_sub": presenceSub,
                 "simple_latest": simpleLatest
         ]
-        NetworkInterface().request(.rtmStart, parameters: parameters, successClosure: {(response) in
+        NetworkInterface().request(.rtmStart, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(response)
         }) {(error) in
             failure?(error)
@@ -108,11 +107,10 @@ extension WebAPI {
     ) {
         let parameters: [String: Any?] =
             [
-                "token": token,
                 "batch_presence_aware": batchPresenceAware,
                 "presence_sub": presenceSub
             ]
-        NetworkInterface().request(.rtmConnect, parameters: parameters, successClosure: {(response) in
+        NetworkInterface().request(.rtmConnect, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(response)
         }) {(error) in
             failure?(error)
@@ -124,7 +122,7 @@ extension WebAPI {
 // MARK: - Auth
 extension WebAPI {
     public func authenticationTest(success: AuthTestClosure?, failure: FailureClosure?) {
-        networkInterface.request(.authTest, parameters: ["token": token], successClosure: { (response) in
+        networkInterface.request(.authTest, accessToken: token, parameters: [:], successClosure: { (response) in
             success?(response["user_id"] as? String, response["team_id"] as? String)
         }) {(error) in
             failure?(error)
@@ -142,8 +140,8 @@ extension WebAPI {
         success: SuccessClosure?,
         failure: FailureClosure?
     ) {
-        let parameters: [String: Any?] = ["token": token, "test": test]
-        NetworkInterface().request(.authRevoke, parameters: parameters, successClosure: { _ in
+        let parameters: [String: Any?] = ["test": test]
+        NetworkInterface().request(.authRevoke, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -256,8 +254,8 @@ extension WebAPI {
 // MARK: - Messaging
 extension WebAPI {
     public func deleteMessage(channel: String, ts: String, success: SuccessClosure?, failure: FailureClosure?) {
-        let parameters: [String: Any] = ["token": token, "channel": channel, "ts": ts]
-        networkInterface.request(.chatDelete, parameters: parameters, successClosure: { _ in
+        let parameters: [String: Any] = ["channel": channel, "ts": ts]
+        networkInterface.request(.chatDelete, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -281,7 +279,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "channel": channel,
             "text": text,
             "as_user": asUser,
@@ -295,7 +292,7 @@ extension WebAPI {
             "attachments": encodeAttachments(attachments),
             "blocks": encodeBlocks(blocks)
         ]
-        networkInterface.request(.chatPostMessage, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(.chatPostMessage, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?((ts: response["ts"] as? String, response["channel"] as? String))
         }) {(error) in
             failure?(error)
@@ -320,7 +317,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "channel": channel,
             "thread_ts": thread,
             "text": text,
@@ -335,7 +331,7 @@ extension WebAPI {
             "icon_emoji": iconEmoji,
             "attachments": encodeAttachments(attachments)
         ]
-        networkInterface.request(.chatPostMessage, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(.chatPostMessage, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?((ts: response["ts"] as? String, response["channel"] as? String))
         }) {(error) in
             failure?(error)
@@ -356,7 +352,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "channel": channel,
             "text": text,
             "user": user,
@@ -367,7 +362,7 @@ extension WebAPI {
             "link_names": linkNames,
             "parse": parse?.rawValue,
             ]
-        networkInterface.request(.chatPostEphemeral, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(.chatPostEphemeral, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?((ts: response["message_ts"] as? String, response["channel"] as? String))
         }) {(error) in
             failure?(error)
@@ -380,8 +375,8 @@ extension WebAPI {
         success: (((ts: String?, channel: String?)) -> Void)?,
         failure: FailureClosure?
     ) {
-        let parameters: [String: Any?] = ["token": token, "channel": channel, "text":  text]
-        networkInterface.request(.chatMeMessage, parameters: parameters, successClosure: {(response) in
+        let parameters: [String: Any?] = ["channel": channel, "text":  text]
+        networkInterface.request(.chatMeMessage, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?((ts: response["ts"] as? String, response["channel"] as? String))
         }) {(error) in
             failure?(error)
@@ -399,7 +394,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "channel": channel,
             "ts": ts,
             "text": message,
@@ -407,7 +401,7 @@ extension WebAPI {
             "link_names": linkNames,
             "attachments": encodeAttachments(attachments)
         ]
-        networkInterface.request(.chatUpdate, parameters: parameters, successClosure: { _ in
+        networkInterface.request(.chatUpdate, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -418,8 +412,8 @@ extension WebAPI {
 // MARK: - Do Not Disturb
 extension WebAPI {
     public func dndInfo(user: String? = nil, success: ((_ status: DoNotDisturbStatus) -> Void)?, failure: FailureClosure?) {
-        let parameters: [String: Any?] = ["token": token, "user": user]
-        networkInterface.request(.dndInfo, parameters: parameters, successClosure: {(response) in
+        let parameters: [String: Any?] = ["user": user]
+        networkInterface.request(.dndInfo, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(DoNotDisturbStatus(status: response))
         }) {(error) in
             failure?(error)
@@ -431,8 +425,8 @@ extension WebAPI {
         success: ((_ statuses: [String: DoNotDisturbStatus]) -> Void)?,
         failure: FailureClosure?
     ) {
-        let parameters: [String: Any?] = ["token": token, "users": users?.joined(separator: ",")]
-        networkInterface.request(.dndTeamInfo, parameters: parameters, successClosure: {(response) in
+        let parameters: [String: Any?] = ["users": users?.joined(separator: ",")]
+        networkInterface.request(.dndTeamInfo, accessToken: token, parameters: parameters, successClosure: {(response) in
             guard let usersDictionary = response["users"] as? [String: Any] else {
                 success?([:])
                 return
@@ -447,7 +441,7 @@ extension WebAPI {
 // MARK: - Emoji
 extension WebAPI {
     public func emojiList(success: ((_ emojiList: [String: Any]?) -> Void)?, failure: FailureClosure?) {
-        networkInterface.request(.emojiList, parameters: ["token": token], successClosure: {(response) in
+        networkInterface.request(.emojiList, accessToken: token, parameters: [:], successClosure: {(response) in
             success?(response["emoji"] as? [String: Any])
         }) {(error) in
             failure?(error)
@@ -458,8 +452,8 @@ extension WebAPI {
 // MARK: - Files
 extension WebAPI {
     public func deleteFile(fileID: String, success: SuccessClosure?, failure: FailureClosure?) {
-        let parameters = ["token": token, "file": fileID]
-        networkInterface.request(.filesDelete, parameters: parameters, successClosure: { _ in
+        let parameters = ["file": fileID]
+        networkInterface.request(.filesDelete, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -473,8 +467,8 @@ extension WebAPI {
         success: FileClosure?,
         failure: FailureClosure?
     ) {
-        let parameters: [String: Any] = ["token": token, "file": fileID, "count": count, "page": page]
-        networkInterface.request(.filesInfo, parameters: parameters, successClosure: {(response) in
+        let parameters: [String: Any] = ["file": fileID, "count": count, "page": page]
+        networkInterface.request(.filesInfo, accessToken: token, parameters: parameters, successClosure: {(response) in
             var file = File(file: response["file"] as? [String: Any])
             (response["comments"] as? [[String: Any]])?.forEach { comment in
                 let comment = Comment(comment: comment)
@@ -500,7 +494,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "filename": filename,
             "filetype": filetype,
             "title": title,
@@ -508,7 +501,7 @@ extension WebAPI {
             "channels": channels?.joined(separator: ","),
             "thread_ts": ts
         ]
-        networkInterface.uploadRequest(data: file, parameters: parameters, successClosure: {(response) in
+        networkInterface.uploadRequest(data: file, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(File(file: response["file"] as? [String: Any]))
         }) {(error) in
             failure?(error)
@@ -519,8 +512,8 @@ extension WebAPI {
 // MARK: - File Comments
 extension WebAPI {
     public func addFileComment(fileID: String, comment: String, success: CommentClosure?, failure: FailureClosure?) {
-        let parameters: [String: Any] = ["token": token, "file": fileID, "comment": comment]
-        networkInterface.request(.filesCommentsAdd, parameters: parameters, successClosure: {(response) in
+        let parameters: [String: Any] = ["file": fileID, "comment": comment]
+        networkInterface.request(.filesCommentsAdd, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(Comment(comment: response["comment"] as? [String: Any]))
         }) {(error) in
             failure?(error)
@@ -528,8 +521,8 @@ extension WebAPI {
     }
 
     public func editFileComment(fileID: String, commentID: String, comment: String, success: CommentClosure?, failure: FailureClosure?) {
-        let parameters: [String: Any] = ["token": token, "file": fileID, "id": commentID, "comment": comment]
-        networkInterface.request(.filesCommentsEdit, parameters: parameters, successClosure: {(response) in
+        let parameters: [String: Any] = ["file": fileID, "id": commentID, "comment": comment]
+        networkInterface.request(.filesCommentsEdit, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(Comment(comment: response["comment"] as? [String: Any]))
         }) {(error) in
             failure?(error)
@@ -537,8 +530,8 @@ extension WebAPI {
     }
 
     public func deleteFileComment(fileID: String, commentID: String, success: SuccessClosure?, failure: FailureClosure?) {
-        let parameters: [String: Any] = ["token": token, "file": fileID, "id": commentID]
-        networkInterface.request(.filesCommentsDelete, parameters: parameters, successClosure: { _ in
+        let parameters: [String: Any] = ["file": fileID, "id": commentID]
+        networkInterface.request(.filesCommentsDelete, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -610,8 +603,8 @@ extension WebAPI {
     }
 
     public func openGroup(channel: String, success: SuccessClosure?, failure: FailureClosure?) {
-        let parameters = ["token": token, "channel": channel]
-        networkInterface.request(.groupsOpen, parameters: parameters, successClosure: { _ in
+        let parameters = ["channel": channel]
+        networkInterface.request(.groupsOpen, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -691,8 +684,8 @@ extension WebAPI {
     }
 
     public func openIM(userID: String, success: ((_ imID: String?) -> Void)?, failure: FailureClosure?) {
-        let parameters = ["token": token, "user": userID]
-        networkInterface.request(.imOpen, parameters: parameters, successClosure: {(response) in
+        let parameters = ["user": userID]
+        networkInterface.request(.imOpen, accessToken: token, parameters: parameters, successClosure: {(response) in
             let group = response["channel"] as? [String: Any]
             success?(group?["id"] as? String)
         }) {(error) in
@@ -757,8 +750,8 @@ extension WebAPI {
     }
 
     public func openMPIM(userIDs: [String], success: ((_ mpimID: String?) -> Void)?, failure: FailureClosure?) {
-        let parameters = ["token": token, "users": userIDs.joined(separator: ",")]
-        networkInterface.request(.mpimOpen, parameters: parameters, successClosure: {(response) in
+        let parameters = ["users": userIDs.joined(separator: ",")]
+        networkInterface.request(.mpimOpen, accessToken: token, parameters: parameters, successClosure: {(response) in
             let group = response["group"] as? [String: Any]
             success?(group?["id"] as? String)
         }) {(error) in
@@ -775,10 +768,9 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "channel": channel
         ]
-        networkInterface.request(.pinsList, parameters: parameters, successClosure: { response in
+        networkInterface.request(.pinsList, accessToken: token, parameters: parameters, successClosure: { response in
             let items = response["items"] as? [[String: Any]]
             success?(items?.map({ Item(item: $0) }))
         }) {(error) in
@@ -826,13 +818,12 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "channel": channel,
             "file": file,
             "file_comment": fileComment,
             "timestamp": timestamp
         ]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: { _ in
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -915,14 +906,13 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "name": name,
             "file": file,
             "file_comment": fileComment,
             "channel": channel,
             "timestamp": timestamp
         ]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: { _ in
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -962,14 +952,13 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "file": file,
             "file_comment": comment,
             "channel": channel,
             "timestamp": timestamp,
             "full": full
         ]
-        networkInterface.request(.reactionsGet, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(.reactionsGet, accessToken: token, parameters: parameters, successClosure: {(response) in
             guard let item = response[type.rawValue] as? [String: Any] else {
                 reactions?([])
                 return
@@ -999,13 +988,12 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "user": user,
             "full": full,
             "count": count,
             "page": page
         ]
-        networkInterface.request(.reactionsList, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(.reactionsList, accessToken: token, parameters: parameters, successClosure: {(response) in
             let items = response["items"] as? [[String: Any]]
             success?(items?.map({ Item(item: $0) }))
         }) {(error) in
@@ -1088,13 +1076,12 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "file": file,
             "file_comment": fileComment,
             "channel": channel,
             "timestamp": timestamp
         ]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: { _ in
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -1105,7 +1092,7 @@ extension WebAPI {
 // MARK: - Team
 extension WebAPI {
     public func teamInfo(success: ((_ info: [String: Any]?) -> Void)?, failure: FailureClosure?) {
-        networkInterface.request(.teamInfo, parameters: ["token": token], successClosure: {(response) in
+        networkInterface.request(.teamInfo, accessToken: token, parameters: [:], successClosure: {(response) in
             success?(response["team"] as? [String: Any])
         }) {(error) in
             failure?(error)
@@ -1125,14 +1112,13 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any?] = [
-            "token": token,
             "cursor": cursor,
             "exclude_archived": excludeArchived,
             "limit": limit,
             "types": types?.map({ $0.rawValue }).joined(separator: ","),
             "user": userID
         ]
-        networkInterface.request(.usersConversations, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(.usersConversations, accessToken: token, parameters: parameters, successClosure: {(response) in
             let channels: [Channel] = (response["channels"] as? [[String: Any]])?.map{Channel(channel: $0)} ?? []
             success?(channels, (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
         }) {(error) in
@@ -1141,8 +1127,8 @@ extension WebAPI {
     }
 
     public func userPresence(user: String, success: ((_ presence: String?) -> Void)?, failure: FailureClosure?) {
-        let parameters: [String: Any] = ["token": token, "user": user]
-        networkInterface.request(.usersGetPresence, parameters: parameters, successClosure: {(response) in
+        let parameters: [String: Any] = ["user": user]
+        networkInterface.request(.usersGetPresence, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(response["presence"] as? String)
         }) {(error) in
             failure?(error)
@@ -1150,8 +1136,8 @@ extension WebAPI {
     }
 
     public func userInfo(id: String, success: ((_ user: User) -> Void)?, failure: FailureClosure?) {
-        let parameters: [String: Any] = ["token": token, "user": id]
-        networkInterface.request(.usersInfo, parameters: parameters, successClosure: {(response) in
+        let parameters: [String: Any] = ["user": id]
+        networkInterface.request(.usersInfo, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(User(user: response["user"] as? [String: Any]))
         }) {(error) in
             failure?(error)
@@ -1163,7 +1149,7 @@ extension WebAPI {
                           includePresence: Bool = false,
                           success: ((_ userList: [[String: Any]]?, _ nextCursor: String?) -> Void)?,
                           failure: FailureClosure?) {
-        var parameters: [String: Any] = ["token": token, "presence": includePresence]
+        var parameters: [String: Any] = ["presence": includePresence]
         if let cursor = cursor {
             parameters["cursor"] = cursor
         }
@@ -1171,7 +1157,7 @@ extension WebAPI {
             parameters["limit"] = limit
         }
         
-        networkInterface.request(.usersList, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(.usersList, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(response["members"] as? [[String: Any]], (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
         }) {(error) in
             failure?(error)
@@ -1179,8 +1165,8 @@ extension WebAPI {
     }
     
     public func usersLookupByEmail(_ email: String, success: ((_ user: User) -> Void)?, failure: FailureClosure?) {
-        let parameters: [String: Any] = ["token": token, "email": email]
-        networkInterface.request(.usersLookupByEmail, parameters: parameters, successClosure: { response in
+        let parameters: [String: Any] = ["email": email]
+        networkInterface.request(.usersLookupByEmail, accessToken: token, parameters: parameters, successClosure: { response in
             success?(User(user: response["user"] as? [String: Any]))
         }) { error in
             failure?(error)
@@ -1196,28 +1182,19 @@ extension WebAPI {
             "phone": profile.phone,
             "status_text": profile.statusText,
             "status_emoji": profile.statusEmoji,
-            "status_expiration": profile.statusExpiration,
+            "status_expiration": profile.statusExpiration
         ] as [String: Any?])
         .filter { $0.value != nil }
         .mapValues { $0! }
 
         do {
-            let data = try JSONSerialization.data(withJSONObject: profileValues)
-            let json = String(data: data, encoding: .utf8)
-            guard let encodedJSON = json?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-                throw SlackError.clientJSONError
-            }
-            var urlComponents = URLComponents(string: "https://slack.com/api/users.profile.set")
-            urlComponents?.queryItems = [
-                URLQueryItem(name: "token", value: token),
-                URLQueryItem(name: "profile", value: encodedJSON)
-            ]
-
+            let data = try JSONSerialization.data(withJSONObject: ["profile": profileValues])
+            let urlComponents = URLComponents(string: "https://slack.com/api/users.profile.set")
             guard let requestString = urlComponents?.url?.absoluteString else {
                 throw SlackError.clientNetworkError
             }
 
-            networkInterface.customRequest(requestString, data: Data(), success: { _ in
+            networkInterface.customRequest(requestString, token: token, data: data, success: { _ in
                 success?(true)
             }) {(error) in
                 failure?(error)
@@ -1228,7 +1205,7 @@ extension WebAPI {
     }
 
     public func setUserActive(success: SuccessClosure?, failure: FailureClosure?) {
-        networkInterface.request(.usersSetActive, parameters: ["token": token], successClosure: { _ in
+        networkInterface.request(.usersSetActive, accessToken: token, parameters: [:], successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -1236,8 +1213,8 @@ extension WebAPI {
     }
 
     public func setUserPresence(presence: Presence, success: SuccessClosure?, failure: FailureClosure?) {
-        let parameters: [String: Any] = ["token": token, "presence": presence.rawValue]
-        networkInterface.request(.usersSetPresence, parameters: parameters, successClosure: { _ in
+        let parameters: [String: Any] = ["presence": presence.rawValue]
+        networkInterface.request(.usersSetPresence, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -1255,7 +1232,7 @@ extension WebAPI {
         success: ((_ channels: [[String: Any]]?, _ nextCursor: String?) -> Void)?,
         failure: FailureClosure?
     ) {
-        var parameters: [String: Any] = ["token": token, "exclude_archived": excludeArchived]
+        var parameters: [String: Any] = ["exclude_archived": excludeArchived]
         if let cursor = cursor {
             parameters["cursor"] = cursor
         }
@@ -1265,7 +1242,7 @@ extension WebAPI {
         if let types = types {
             parameters["types"] = types.map({ $0.rawValue }).joined(separator: ",")
         }
-        networkInterface.request(.conversationsList, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(.conversationsList, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(response["channels"] as? [[String: Any]], (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
         }) {(error) in
             failure?(error)
@@ -1284,7 +1261,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         var parameters: [String: Any] = [
-            "token": token,
             "channel": id,
             "ts": ts,
             "inclusive": inclusive,
@@ -1295,7 +1271,7 @@ extension WebAPI {
         if let cursor = cursor {
             parameters["cursor"] = cursor
         }
-        networkInterface.request(.conversationsReplies, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(.conversationsReplies, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(response["messages"] as? [[String: Any]], (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
         }) {(error) in
             failure?(error)
@@ -1310,7 +1286,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         var parameters: [String: Any] = [
-            "token": token,
             "channel": id
         ]
         if let cursor = cursor {
@@ -1319,7 +1294,7 @@ extension WebAPI {
         if let limit = limit {
             parameters["limit"] = limit
         }
-        networkInterface.request(.conversationsMembers, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(.conversationsMembers, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(response["members"] as? [String], (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
         }) {(error) in
             failure?(error)
@@ -1337,7 +1312,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         var parameters: [String: Any] = [
-            "token": token,
             "channel": id,
             "inclusive": inclusive,
             "limit": limit,
@@ -1347,7 +1321,7 @@ extension WebAPI {
         if let cursor = cursor {
             parameters["cursor"] = cursor
         }
-        networkInterface.request(.conversationsHistory, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(.conversationsHistory, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(response["messages"] as? [[String: Any]], (response["response_metadata"] as? [String: Any])?["next_cursor"] as? String)
         }) {(error) in
             failure?(error)
@@ -1377,7 +1351,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any] = [
-            "token": token,
             "query": query,
             "count": count,
             "highlight": highlight,
@@ -1385,7 +1358,7 @@ extension WebAPI {
             "sort": sort.rawValue,
             "sort_dir": sortDir.rawValue,
         ]
-        networkInterface.request(.searchAll, parameters: parameters, successClosure: { (response) in
+        networkInterface.request(.searchAll, accessToken: token, parameters: parameters, successClosure: { (response) in
             success?(
                 (response["files"] as? [String : Any])?["matches"] as? [[String : Any]],
                 (response["messages"] as? [String : Any])?["matches"] as? [[String : Any]]
@@ -1406,7 +1379,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any] = [
-            "token": token,
             "query": query,
             "count": count,
             "highlight": highlight,
@@ -1414,7 +1386,7 @@ extension WebAPI {
             "sort": sort.rawValue,
             "sort_dir": sortDir.rawValue,
         ]
-        networkInterface.request(.searchFiles, parameters: parameters, successClosure: { (response) in
+        networkInterface.request(.searchFiles, accessToken: token, parameters: parameters, successClosure: { (response) in
             success?(
                 (response["files"] as? [String : Any])?["matches"] as? [[String : Any]]
             )
@@ -1434,7 +1406,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any] = [
-            "token": token,
             "query": query,
             "count": count,
             "highlight": highlight,
@@ -1442,7 +1413,7 @@ extension WebAPI {
             "sort": sort.rawValue,
             "sort_dir": sortDir.rawValue,
         ]
-        networkInterface.request(.searchMessages, parameters: parameters, successClosure: { (response) in
+        networkInterface.request(.searchMessages, accessToken: token, parameters: parameters, successClosure: { (response) in
             success?(
                 (response["messages"] as? [String : Any])?["matches"] as? [[String : Any]]
             )
@@ -1494,8 +1465,8 @@ extension WebAPI {
     }
 
     fileprivate func close(_ endpoint: Endpoint, channelID: String, success: SuccessClosure?, failure: FailureClosure?) {
-        let parameters: [String: Any] = ["token": token, "channel": channelID]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: { _ in
+        let parameters: [String: Any] = ["channel": channelID]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -1514,7 +1485,6 @@ extension WebAPI {
         failure: FailureClosure?
     ) {
         let parameters: [String: Any] = [
-            "token": token,
             "channel": id,
             "latest": latest,
             "oldest": oldest,
@@ -1522,7 +1492,7 @@ extension WebAPI {
             "count": count,
             "unreads": unreads
         ]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: {(response) in
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(History(history: response))
         }) {(error) in
             failure?(error)
@@ -1536,8 +1506,8 @@ extension WebAPI {
         success: ChannelClosure?,
         failure: FailureClosure?
     ) {
-        let parameters: [String: Any] = ["token": token, "channel": id]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: {(response) in
+        let parameters: [String: Any] = ["channel": id]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(Channel(channel: response[type.rawValue] as? [String: Any]))
         }) {(error) in
             failure?(error)
@@ -1552,8 +1522,8 @@ extension WebAPI {
         success: ((_ channels: [[String: Any]]?) -> Void)?,
         failure: FailureClosure?
     ) {
-        let parameters: [String: Any] = ["token": token, "exclude_archived": excludeArchived, "exclude_members": excludeMembers]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: {(response) in
+        let parameters: [String: Any] = ["exclude_archived": excludeArchived, "exclude_members": excludeMembers]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(response[type.rawValue+"s"] as? [[String: Any]])
         }) {(error) in
             failure?(error)
@@ -1567,8 +1537,8 @@ extension WebAPI {
         success: ((_ ts: String) -> Void)?,
         failure: FailureClosure?
     ) {
-        let parameters: [String: Any] = ["token": token, "channel": channel, "ts": timestamp]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: { _ in
+        let parameters: [String: Any] = ["channel": channel, "ts": timestamp]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(timestamp)
         }) {(error) in
             failure?(error)
@@ -1583,8 +1553,8 @@ extension WebAPI {
         success: SuccessClosure?,
         failure: FailureClosure?
     ) {
-        let parameters: [String: Any] = ["token": token, "channel": channel, type.rawValue: text]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: { _ in
+        let parameters: [String: Any] = ["channel": channel, type.rawValue: text]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -1597,8 +1567,8 @@ extension WebAPI {
         success: ChannelClosure?,
         failure: FailureClosure?
     ) {
-        let parameters: [String: Any] = ["token": token, "name": name]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: {(response) in
+        let parameters: [String: Any] = ["name": name]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: {(response) in
             success?(Channel(channel: response["channel"] as? [String: Any]))
         }) {(error) in
             failure?(error)
@@ -1612,8 +1582,8 @@ extension WebAPI {
         success: SuccessClosure?,
         failure: FailureClosure?
     ) {
-        let parameters: [String: Any] = ["token": token, "channel": channel, "user": user]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: { _ in
+        let parameters: [String: Any] = ["channel": channel, "user": user]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -1627,8 +1597,8 @@ extension WebAPI {
         success: ChannelClosure?,
         failure: FailureClosure?
         ) {
-        let parameters: [String: Any] = ["token": token, "name": name, "validate": validate]
-        networkInterface.request(endpoint, parameters: parameters, successClosure: { response in
+        let parameters: [String: Any] = ["name": name, "validate": validate]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters, successClosure: { response in
             success?(Channel(channel: response["channel"] as? [String: Any]))
         }) {(error) in
             failure?(error)
@@ -1641,8 +1611,8 @@ extension WebAPI {
         success: SuccessClosure?,
         failure: FailureClosure?
         ) {
-        let parameters: [String: Any] = ["token": token, "channel": channel]
-        networkInterface.request(endpoint, parameters: parameters,successClosure: { _ in
+        let parameters: [String: Any] = ["channel": channel]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters,successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -1655,8 +1625,8 @@ extension WebAPI {
         success: SuccessClosure?,
         failure: FailureClosure?
         ) {
-        let parameters: [String: Any] = ["token": token, "channel": channel]
-        networkInterface.request(endpoint, parameters: parameters,successClosure: { _ in
+        let parameters: [String: Any] = ["channel": channel]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters,successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -1669,8 +1639,8 @@ extension WebAPI {
         success: SuccessClosure?,
         failure: FailureClosure?
         ) {
-        let parameters: [String: Any] = ["token": token, "channel": channel]
-        networkInterface.request(endpoint, parameters: parameters,successClosure: { _ in
+        let parameters: [String: Any] = ["channel": channel]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters,successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
@@ -1685,8 +1655,8 @@ extension WebAPI {
         success: ChannelClosure?,
         failure: FailureClosure?
         ) {
-        let parameters: [String: Any] = ["token": token, "channel": channel, "name": name, "validate": validate ]
-        networkInterface.request(endpoint, parameters: parameters,successClosure: { response in
+        let parameters: [String: Any] = ["channel": channel, "name": name, "validate": validate ]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters,successClosure: { response in
             success?(Channel(channel: response["channel"] as? [String: Any]))
         }) {(error) in
             failure?(error)
@@ -1700,8 +1670,8 @@ extension WebAPI {
         success: SuccessClosure?,
         failure: FailureClosure?
         ) {
-        let parameters: [String: Any] = ["token": token, "channel": channel, "user": user]
-        networkInterface.request(endpoint, parameters: parameters,successClosure: { _ in
+        let parameters: [String: Any] = ["channel": channel, "user": user]
+        networkInterface.request(endpoint, accessToken: token, parameters: parameters,successClosure: { _ in
             success?(true)
         }) {(error) in
             failure?(error)
