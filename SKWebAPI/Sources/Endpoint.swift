@@ -37,6 +37,8 @@ public enum Endpoint: String {
     case chatPostEphemeral = "chat.postEphemeral"
     case chatPostMessage = "chat.postMessage"
     case chatUpdate = "chat.update"
+    case conversationsArchive = "conversations.archive"
+    case conversationsCreate = "conversations.create"
     case conversationsHistory = "conversations.history"
     case conversationsList = "conversations.list"
     case conversationsMembers = "conversations.members"

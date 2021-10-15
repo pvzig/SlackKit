@@ -1169,6 +1169,35 @@ extension WebAPI {
 
 // MARK: - Conversations
 extension WebAPI {
+    public func conversationsArchive(channel: String, success: (() -> Void)?, failure: FailureClosure?) {
+        let parameters = ["channel": channel]
+        networkInterface.request(.conversationsArchive, accessToken: token, parameters: parameters, successClosure: {_ in }) {(error) in
+            failure?(error)
+        }
+    }
+
+    public func conversationsCreate(
+        name: String,
+        isPrivate: Bool = false,
+        success: ((_ id: String?, _ name: String?, _ creator: String?) -> Void)?,
+        failure: FailureClosure?
+    ) {
+        let parameters = [
+            "name": name,
+            "is_private": isPrivate
+        ] as [String : Any]
+        networkInterface.request(.conversationsOpen, accessToken: token, parameters: parameters, successClosure: {(response) in
+            let group = response["channel"] as? [String: Any]
+            success?(
+                group?["id"] as? String,
+                group?["name"] as? String,
+                group?["creator"] as? String
+            )
+        }) {(error) in
+            failure?(error)
+        }
+    }
+
     public func conversationsList(
         excludeArchived: Bool = false,
         cursor: String? = nil,
@@ -1273,8 +1302,14 @@ extension WebAPI {
         }
     }
 
-    public func openConversations(userIDs: [String], success: ((_ imID: String?) -> Void)?, failure: FailureClosure?) {
-        let parameters = ["users": userIDs.joined(separator: ",")]
+    public func conversationsOpen(
+        userIDs: [String],
+        success: ((_ imID: String?) -> Void)?,
+        failure: FailureClosure?
+    ) {
+        let parameters = [
+            "users": userIDs.joined(separator: ",")
+        ]
         networkInterface.request(.conversationsOpen, accessToken: token, parameters: parameters, successClosure: {(response) in
             let group = response["channel"] as? [String: Any]
             success?(group?["id"] as? String)
@@ -1638,12 +1673,12 @@ extension WebAPI {
 extension WebAPI {
 
     // MARK: channels.*
-    @available(*, deprecated)
+    @available(*, deprecated, message: "Use conversationsArchive instead.")
     public func channelsArchive(_ channel: String, success: SuccessClosure?, failure: FailureClosure?) {
         archive(.channelsArchive, channel: channel, success: success, failure: failure)
     }
 
-    @available(*, deprecated)
+    @available(*, deprecated, message: "Use conversationsCreate instead.")
     public func createChannel(channel: String, success: ChannelClosure?, failure: FailureClosure?) {
         create(.channelsCreate, name: channel, success: success, failure: failure)
     }
@@ -1691,7 +1726,7 @@ extension WebAPI {
     }
 
     // MARK: im.*
-    @available(*, deprecated, message: "Use openConversation instead.")
+    @available(*, deprecated, message: "Use conversationsOpen instead.")
     public func openIM(userID: String, success: ((_ imID: String?) -> Void)?, failure: FailureClosure?) {
         let parameters = ["user": userID]
         networkInterface.request(.imOpen, accessToken: token, parameters: parameters, successClosure: {(response) in
