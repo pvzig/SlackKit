@@ -26,14 +26,7 @@ public enum Endpoint: String {
     case authRevoke = "auth.revoke"
     case authTest = "auth.test"
     case channelsHistory = "channels.history"
-    case channelsInfo = "channels.info"
-    case channelsList = "channels.list"
-    case channelsMark = "channels.mark"
-    case channelsCreate = "channels.create"
-    case channelsInvite = "channels.invite"
-    case channelsJoin = "channels.join"
     case channelsLeave = "channels.leave"
-    case channelsArchive = "channels.archive"
     case channelsUnarchive = "channels.unarchive"
     case channelsRename = "channels.rename"
     case channelsKick = "channels.kick"
@@ -101,5 +94,12 @@ public enum Endpoint: String {
     case searchMessages = "search.messages"
 
     // MARK: - Deprecated endpoints
+    case channelsArchive = "channels.archive"
+    case channelsCreate = "channels.create"
+    case channelsInfo = "channels.info"
+    case channelsInvite = "channels.invite"
+    case channelsJoin = "channels.join"
+    case channelsList = "channels.list"
+    case channelsMark = "channels.mark"
     case imOpen = "im.open"
 }

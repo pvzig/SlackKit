@@ -172,54 +172,9 @@ extension WebAPI {
             failure?(error)
         }
     }
-
-    public func channelInfo(id: String, success: ChannelClosure?, failure: FailureClosure?) {
-        info(.channelsInfo, type:.channel, id: id, success: {(channel) in
-            success?(channel)
-        }) {(error) in
-            failure?(error)
-        }
-    }
-
-    public func channelsList(
-        excludeArchived: Bool = false,
-        excludeMembers: Bool = false,
-        success: ((_ channels: [[String: Any]]?) -> Void)?,
-        failure: FailureClosure?
-    ) {
-        list(.channelsList, type:.channel, excludeArchived: excludeArchived, excludeMembers: excludeMembers, success: {(channels) in
-            success?(channels)
-        }) {(error) in
-            failure?(error)
-        }
-    }
-
-    public func markChannel(channel: String, timestamp: String, success: ((_ ts: String) -> Void)?, failure: FailureClosure?) {
-        mark(.channelsMark, channel: channel, timestamp: timestamp, success: {(ts) in
-            success?(ts)
-        }) {(error) in
-            failure?(error)
-        }
-    }
-
-    public func createChannel(channel: String, success: ChannelClosure?, failure: FailureClosure?) {
-        create(.channelsCreate, name: channel, success: success, failure: failure)
-    }
-
-    public func inviteToChannel(_ channel: String, user: String, success: SuccessClosure?, failure: FailureClosure?) {
-        invite(.channelsInvite, channel: channel, user: user, success: success, failure: failure)
-    }
-    
-    public func channelsJoin(_ name: String, validate: Bool, success: ChannelClosure?, failure: FailureClosure?) {
-        join(.channelsJoin, name: name, validate: validate, success: success, failure: failure)
-    }
     
     public func channelsLeave(_ channel: String, success: SuccessClosure?, failure: FailureClosure?) {
         leave(.channelsLeave, channel: channel, success: success, failure: failure)
-    }
-    
-    public func channelsArchive(_ channel: String, success: SuccessClosure?, failure: FailureClosure?) {
-        archive(.channelsArchive, channel: channel, success: success, failure: failure)
     }
     
     public func channelsUnarchive(_ channel: String, success: SuccessClosure?, failure: FailureClosure?) {
@@ -1681,6 +1636,61 @@ extension WebAPI {
 
 // MARK: - Deprecated
 extension WebAPI {
+
+    // MARK: channels.*
+    @available(*, deprecated)
+    public func channelsArchive(_ channel: String, success: SuccessClosure?, failure: FailureClosure?) {
+        archive(.channelsArchive, channel: channel, success: success, failure: failure)
+    }
+
+    @available(*, deprecated)
+    public func createChannel(channel: String, success: ChannelClosure?, failure: FailureClosure?) {
+        create(.channelsCreate, name: channel, success: success, failure: failure)
+    }
+
+    @available(*, deprecated)
+    public func channelInfo(id: String, success: ChannelClosure?, failure: FailureClosure?) {
+        info(.channelsInfo, type:.channel, id: id, success: {(channel) in
+            success?(channel)
+        }) {(error) in
+            failure?(error)
+        }
+    }
+
+    @available(*, deprecated)
+    public func inviteToChannel(_ channel: String, user: String, success: SuccessClosure?, failure: FailureClosure?) {
+        invite(.channelsInvite, channel: channel, user: user, success: success, failure: failure)
+    }
+
+    @available(*, deprecated)
+    public func channelsJoin(_ name: String, validate: Bool, success: ChannelClosure?, failure: FailureClosure?) {
+        join(.channelsJoin, name: name, validate: validate, success: success, failure: failure)
+    }
+
+    @available(*, deprecated)
+    public func channelsList(
+        excludeArchived: Bool = false,
+        excludeMembers: Bool = false,
+        success: ((_ channels: [[String: Any]]?) -> Void)?,
+        failure: FailureClosure?
+    ) {
+        list(.channelsList, type:.channel, excludeArchived: excludeArchived, excludeMembers: excludeMembers, success: {(channels) in
+            success?(channels)
+        }) {(error) in
+            failure?(error)
+        }
+    }
+
+    @available(*, deprecated)
+    public func markChannel(channel: String, timestamp: String, success: ((_ ts: String) -> Void)?, failure: FailureClosure?) {
+        mark(.channelsMark, channel: channel, timestamp: timestamp, success: {(ts) in
+            success?(ts)
+        }) {(error) in
+            failure?(error)
+        }
+    }
+
+    // MARK: im.*
     @available(*, deprecated, message: "Use openConversation instead.")
     public func openIM(userID: String, success: ((_ imID: String?) -> Void)?, failure: FailureClosure?) {
         let parameters = ["user": userID]
