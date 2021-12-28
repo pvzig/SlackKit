@@ -10,7 +10,7 @@ jobs:
 # Builds
 - job: macOS
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-11'
   steps:
   - task: Xcode@5
     inputs:
@@ -20,7 +20,7 @@ jobs:
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_12.4.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_13.0.app/Contents/Developer'
   - task: Xcode@5
     inputs:
       actions: 'test'
@@ -29,10 +29,10 @@ jobs:
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_12.4.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_13.0.app/Contents/Developer'
 - job: iOS
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-11'
   steps:
   - task: Xcode@5
     inputs:
@@ -42,7 +42,7 @@ jobs:
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_12.4.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_13.0.app/Contents/Developer'
   - task: Xcode@5
     inputs:
       actions: 'test'
@@ -51,15 +51,15 @@ jobs:
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_12.4.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_13.0.app/Contents/Developer'
       destinationPlatformOption: 'custom'
       destinationPlatform: 'iOS'
       destinationTypeOption: 'simulators'
-      destinationSimulators: 'iPhone 12 Pro,OS=14.4'
+      destinationSimulators: 'iPhone 13 Pro,OS=15.0'
 
 - job: tvOS
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-11'
   steps:
   - task: Xcode@5
     inputs:
@@ -69,7 +69,7 @@ jobs:
       configuration: 'Release'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_12.4.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_13.0.app/Contents/Developer'
   - task: Xcode@5
     inputs:
       actions: 'test'
@@ -78,29 +78,29 @@ jobs:
       configuration: 'Debug'
       xcWorkspacePath: 'SlackKit.xcodeproj/project.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_12.4.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_13.0.app/Contents/Developer'
       destinationPlatformOption: 'custom'
       destinationPlatform: 'tvOS'
       destinationTypeOption: 'simulators'
-      destinationSimulators: 'Apple TV 4K,OS=14.3'
+      destinationSimulators: 'Apple TV 4K,OS=15.0'
 - job: Linux
   pool:
-    vmImage: 'ubuntu-16.04'
+    vmImage: 'ubuntu-18.04'
   steps:
   - script: |
       # Install Swift dependencies
       sudo apt-get install clang libicu-dev
-      # Install Swift 5.3.3
-      curl https://swift.org/builds/swift-5.3.3-release/ubuntu1604/swift-5.3.3-RELEASE/swift-5.3.3-RELEASE-ubuntu16.04.tar.gz > $(Build.SourcesDirectory)/swift-5.3.3-RELEASE-ubuntu16.04.tar.gz
-      tar xzf swift-5.3.3-RELEASE-ubuntu16.04.tar.gz -C $(Build.SourcesDirectory)
+      # Install Swift 5.5.2
+      curl https://swift.org/builds/swift-5.5.2-release/ubuntu1604/swift-5.5.2-RELEASE/swift-5.5.2-RELEASE-ubuntu18.04.tar.gz > $(Build.SourcesDirectory)/swift-5.5.2-RELEASE-ubuntu18.04.tar.gz
+      tar xzf swift-5.5.2-RELEASE-ubuntu18.04.tar.gz -C $(Build.SourcesDirectory)
       # Swift build
-      $(Build.SourcesDirectory)/swift-5.3.3-RELEASE-ubuntu16.04/usr/bin/swift build
+      $(Build.SourcesDirectory)/swift-5.5.2-RELEASE-ubuntu18.04/usr/bin/swift build
       # Swift test
-      $(Build.SourcesDirectory)/swift-5.3.3-RELEASE-ubuntu16.04/usr/bin/swift test
+      $(Build.SourcesDirectory)/swift-5.5.2-RELEASE-ubuntu18.04/usr/bin/swift test
 # Examples
 - job: 'Swift_Package_Manager'
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-11'
   steps:
   - script: |
       brew update
@@ -109,14 +109,14 @@ jobs:
       swift build --package-path Examples/Leaderboard/
 - job: 'Carthage'
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-11'
   steps:
   - script: carthage bootstrap --use-xcframeworks --platform macos
     workingDirectory: 'Examples/Leaderboard'
 
 - job: 'CocoaPods'
   pool:
-    vmImage: 'macOS-10.15'
+    vmImage: 'macOS-11'
   steps:
   - task: CocoaPods@0
     inputs:
@@ -129,6 +129,6 @@ jobs:
       configuration: 'Release'
       xcWorkspacePath: 'Examples/Leaderboard/Leaderboard.xcworkspace'
       xcodeVersion: specifyPath
-      xcodeDeveloperDir: '/Applications/Xcode_12.4.app/Contents/Developer'
+      xcodeDeveloperDir: '/Applications/Xcode_13.0.app/Contents/Developer'
 
 
