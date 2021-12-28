@@ -91,7 +91,7 @@ jobs:
       # Install Swift dependencies
       sudo apt-get install clang libicu-dev
       # Install Swift 5.5.2
-      curl https://swift.org/builds/swift-5.5.2-release/ubuntu1604/swift-5.5.2-RELEASE/swift-5.5.2-RELEASE-ubuntu18.04.tar.gz > $(Build.SourcesDirectory)/swift-5.5.2-RELEASE-ubuntu18.04.tar.gz
+      curl https://swift.org/builds/swift-5.5.2-release/ubuntu1804/swift-5.5.2-RELEASE/swift-5.5.2-RELEASE-ubuntu18.04.tar.gz > $(Build.SourcesDirectory)/swift-5.5.2-RELEASE-ubuntu18.04.tar.gz
       tar xzf swift-5.5.2-RELEASE-ubuntu18.04.tar.gz -C $(Build.SourcesDirectory)
       # Swift build
       $(Build.SourcesDirectory)/swift-5.5.2-RELEASE-ubuntu18.04/usr/bin/swift build
