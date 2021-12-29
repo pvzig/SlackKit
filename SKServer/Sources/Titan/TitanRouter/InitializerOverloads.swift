@@ -14,8 +14,8 @@
 import Foundation
 
 extension Request {
-    public init(_ method: HTTPMethod = .get, _ path: String = "/", _ body: String = "", _ headers: HTTPHeaders = HTTPHeaders()) {
-        self.init(method: method, path: path, body: body.data(using: .utf8) ?? Data(), headers: headers)
+    public init(_ method: HTTPMethod = .get, _ path: String = "/", _ queryPairs: [(String, String)] = [], _ body: String = "", _ headers: HTTPHeaders = HTTPHeaders()) {
+        self.init(method: method, path: path, queryPairs: queryPairs, body: body.data(using: .utf8) ?? Data(), headers: headers)
     }
 }
 

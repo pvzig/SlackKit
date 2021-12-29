@@ -17,8 +17,10 @@ import Foundation
 public protocol RequestType {
     /// The HTTP request body.
     var body: Data { get }
-    /// The HTTP request path, including query string and any fragments.
+    /// The HTTP request path
     var path: String { get }
+    /// The HTTP request query pairs
+    var queryPairs: [(String, String)] { get }
     /// The HTTP request method.
     var method: HTTPMethod { get }
     /// The HTTP request headers.
@@ -30,14 +32,16 @@ public struct Request: RequestType {
 
     public var method: HTTPMethod
     public var path: String
+    public var queryPairs: [(String, String)]
     public var body: Data
     public var headers: HTTPHeaders
 
     /// Create a Request
     /// Throws an error if the body parameter cannot be converted to Data
-    public init(method: HTTPMethod, path: String, body: String, headers: HTTPHeaders) throws {
+    public init(method: HTTPMethod, path: String, queryPairs: [(String, String)], body: String, headers: HTTPHeaders) throws {
         self.method = method
         self.path = path
+        self.queryPairs = queryPairs
         guard let data = body.data(using: .utf8) else {
             throw TitanError.dataConversion
         }
@@ -46,9 +50,10 @@ public struct Request: RequestType {
     }
 
     /// Create a Request
-    public init(method: HTTPMethod, path: String, body: Data, headers: HTTPHeaders) {
+    public init(method: HTTPMethod, path: String, queryPairs: [(String, String)], body: Data, headers: HTTPHeaders) {
         self.method = method
         self.path = path
+        self.queryPairs = queryPairs
         self.body = body
         self.headers = headers
     }
@@ -57,7 +62,7 @@ public struct Request: RequestType {
 extension Request {
     /// Create a Request from a RequestType
     public init(request: RequestType) {
-        self.init(method: request.method, path: request.path, body: request.body, headers: request.headers)
+        self.init(method: request.method, path: request.path, queryPairs: request.queryPairs, body: request.body, headers: request.headers)
     }
 }
 

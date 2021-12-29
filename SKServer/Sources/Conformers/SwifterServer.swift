@@ -58,6 +58,7 @@ extension HttpRequest {
         return try! Request(
             method: HTTPMethod.custom(named: method),
             path: path,
+            queryPairs: queryParams,
             body: String(bytes: body, encoding: .utf8) ?? "",
             headers: HTTPHeaders(headers: headers.map ({ Header(name: $0.key, value: $0.value) }))
         )
